@@ -6,6 +6,33 @@
 
 .link {
   color: var(--clr-secondary-dark);
+  display: inline-block;
+}
+
+.link::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+}
+
+.link:hover {
+  color: var(--clr-secondary-dark);
+}
+
+.link:hover::after {
+  background-color: var(--clr-secondary-dark);
+  width: 80px;
+}
+
+@media (min-width: 576px) {
+  .link {
+    margin-left: 1rem;
+  }
+
+  .link:hover::after {
+    width: 100%;
+  }
 }
 
 .icon {

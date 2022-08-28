@@ -2,6 +2,7 @@ import style from "./NavbarComponent.module.css";
 import React from "react";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { NavLink } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,19 +13,19 @@ function NavbarComponent() {
     <header>
       <Navbar expand="sm">
         <Container>
-          <Navbar.Brand href="#home" className={style.title}>
-            Holidaze
-          </Navbar.Brand>
+          <NavLink to="/">
+            <Navbar.Brand className={style.title}>Holidaze</Navbar.Brand>
+          </NavLink>
           <Navbar.Toggle aria-controls="navbar-nav" />
           <Navbar.Collapse id="navbar-nav">
             <Nav className="ms-auto">
-              <Nav.Link href="#login" className={style.link}>
+              <NavLink to="/login" className={style.link}>
                 Log in
                 <FontAwesomeIcon icon={faCircleUser} className={style.icon} />
-              </Nav.Link>
-              <Nav.Link href="#contact" className={style.link}>
+              </NavLink>
+              <NavLink to="/contact" className={style.link}>
                 Contact
-              </Nav.Link>
+              </NavLink>
             </Nav>
           </Navbar.Collapse>
         </Container>

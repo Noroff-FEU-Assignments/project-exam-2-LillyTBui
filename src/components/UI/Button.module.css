@@ -1,5 +1,15 @@
 .button {
-  padding: 16px;
+  padding: 0.5rem 1rem;
   min-width: 100px;
-  max-width: 250px;
+  border: none;
+  background: none;
+  background-color: var(--clr-primary-light-blue);
+  border-radius: 10px;
+  color: var(--clr-white);
+}
+
+.button:hover {
+  background-color: var(--clr-white);
+  color: var(--clr-primary-blue);
+  border: 1px solid var(--clr-primary-blue);
 }

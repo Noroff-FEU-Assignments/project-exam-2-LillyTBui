@@ -120,11 +120,11 @@ h4 {
 }
 
 h1 {
-  font-size: var(--fs-800);
+  font-size: var(--fs-700);
 }
 
 h2 {
-  font-size: var(--fs-700);
+  font-size: var(--fs-600);
 }
 
 /* Utility classes */
@@ -168,4 +168,8 @@ h2 {
 .fs-600,
 .fs-500 {
   line-height: var(--lh-medium);
+}
+
+a {
+  text-decoration: none;
 }

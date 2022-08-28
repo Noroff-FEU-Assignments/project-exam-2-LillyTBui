@@ -1,0 +1,38 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20vh;
+}
+
+.title {
+  margin-bottom: 2rem;
+}
+
+.form label:nth-child(3) {
+  margin-top: 1rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  min-width: 250px;
+}
+
+.form input {
+  border-radius: 10px;
+  border: 1px solid gray;
+}
+
+.error {
+  color: red;
+}
+
+.checkbox__div {
+  margin: 1.5rem;
+  margin-left: 0;
+}
+
+.checkbox {
+  margin-right: 0.5rem;
+}
