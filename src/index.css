@@ -1,0 +1,171 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Raleway:wght@400;600&display=swap");
+
+:root {
+  --clr-primary-blue: #024059;
+  --clr-primary-light-blue: #3b758c;
+  --clr-secondary-blue: #b8d0d9;
+  --clr-secondary-dark: #000000e3;
+  --clr-gray: #f7f4f4;
+  --clr-white: #ffffff;
+
+  /* font-families */
+  --ff-sans-normal: "Raleway", sans-serif;
+  --ff-sans-title: "Poppins", sans-serif;
+
+  /* font-sizes */
+  --fs-800: 1.9rem;
+  --fs-700: 1.375rem;
+  --fs-600: 1.125rem;
+  --fs-500: 1rem;
+
+  /* line-height */
+  --lh-normal: 28px;
+  --lh-medium: 33px;
+  --lh-big: 45px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+picture {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+picture {
+  font-weight: 400;
+}
+
+/* set up body */
+html,
+body {
+  height: 100%;
+}
+
+.App {
+  font-family: var(--ff-sans-normal);
+  font-size: var(--fs-500);
+  margin: 0;
+  line-height: var(--lh-normal);
+  color: var(--clr-secondary-dark);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* remove animations for people who've turned them off */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Colors */
+.bg-gray {
+  background-color: var(--clr-gray);
+}
+
+.bg-dark {
+  background-color: var(--clr-secondary-dark);
+}
+
+.bg-blue {
+  background-color: var(--clr-primary-blue);
+}
+
+.bg-light-blue {
+  background-color: var(--clr-primary-light-blue);
+}
+
+/* headings */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--ff-sans-title);
+  font-weight: bold;
+}
+
+h1 {
+  font-size: var(--fs-800);
+}
+
+h2 {
+  font-size: var(--fs-700);
+}
+
+/* Utility classes */
+.ff-sans-title {
+  font-family: var(--ff-sans-title);
+}
+
+.fw-bold {
+  font-weight: bold;
+}
+
+.letterspacing-1 {
+  letter-spacing: 1px;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.fs-800 {
+  font-size: var(--fs-800);
+}
+
+.fs-700 {
+  font-size: var(--fs-700);
+}
+
+.fs-600 {
+  font-size: var(--fs-600);
+}
+
+.fs-500 {
+  font-size: var(--fs-500);
+}
+
+.fs-800,
+.fs-700 {
+  line-height: var(--lh-big);
+}
+
+.fs-600,
+.fs-500 {
+  line-height: var(--lh-medium);
+}

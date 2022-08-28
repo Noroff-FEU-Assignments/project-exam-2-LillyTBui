@@ -1,0 +1,14 @@
+.footer {
+  background-color: var(--clr-primary-blue);
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.text {
+  color: var(--clr-white);
+}
+
+.icon {
+  padding-right: 0.5rem;
+}

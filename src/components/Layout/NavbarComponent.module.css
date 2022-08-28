@@ -1,0 +1,15 @@
+.title {
+  font-size: var(--fs-700);
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+.link {
+  color: var(--clr-secondary-dark);
+}
+
+.icon {
+  padding-left: 0.5rem;
+  font-size: 1.2rem;
+  color: var(--clr-secondary-dark);
+}
