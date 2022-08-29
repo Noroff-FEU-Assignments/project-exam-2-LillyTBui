@@ -5,7 +5,6 @@ import Login from "./components/Login/Login";
 import Home from "./components/Home/Home";
 import Contact from "./components/Contact/Contact";
 import NavbarComponent from "./components/Layout/NavbarComponent";
-import Container from "react-bootstrap/Container";
 
 function App() {
   return (
@@ -13,13 +12,11 @@ function App() {
       <Content>
         <Router>
           <NavbarComponent />
-          <Container>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/contact" element={<Contact />} />
-            </Routes>
-          </Container>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
         </Router>
       </Content>
       <Footer />
