@@ -1,9 +1,3 @@
-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 .hero_div {
   display: flex;
   flex-direction: column;
@@ -60,4 +54,30 @@ img {
     margin-right: 0.5rem;
     margin-bottom: 0;
   }
+}
+
+.categories_div {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.category_name {
+  font-family: var(--ff-sans-title);
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  margin: 0rem 1rem;
+  color: gray;
+  border-bottom: 2px solid gray;
+}
+
+.category_name:hover {
+  cursor: pointer;
+  color: var(--clr-primary-blue);
+  border-color: var(--clr-primary-blue);
+}
+
+.active {
+  color: var(--clr-secondary-dark);
+  border-color: var(--clr-secondary-dark);
 }

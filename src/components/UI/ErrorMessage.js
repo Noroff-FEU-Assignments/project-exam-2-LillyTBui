@@ -1,4 +1,3 @@
-import { faStickyNote } from "@fortawesome/free-regular-svg-icons";
 import React from "react";
 import style from "./ErrorMessage.module.css";
 

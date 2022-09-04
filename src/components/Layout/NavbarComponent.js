@@ -11,7 +11,7 @@ import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 function NavbarComponent() {
   return (
     <header>
-      <Navbar expand="sm">
+      <Navbar expand="sm" className={style.navbar}>
         <Container>
           <NavLink to="/">
             <Navbar.Brand className={style.title}>Holidaze</Navbar.Brand>
