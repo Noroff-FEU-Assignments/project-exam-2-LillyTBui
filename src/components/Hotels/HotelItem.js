@@ -9,6 +9,7 @@ import style from "./HotelItem.module.css";
 import Card from "react-bootstrap/Card";
 
 function HotelItem({ hotel }) {
+  console.log(hotel);
   return (
     <Link to={`detail/${hotel.id}`} key={hotel.id}>
       <Card className={style.card}>
@@ -23,13 +24,13 @@ function HotelItem({ hotel }) {
             <Card.Title className={style.title_container}>
               <h3 className={style.title}>{hotel.name}</h3>
               <FontAwesomeIcon icon={faStar} className={style.star_icon} />
-              <p>{hotel.attributes[2].terms[0].name}</p>
+              <p>{hotel.attributes[2].options[0]}</p>
             </Card.Title>
             <Card.Text>
-              {hotel.attributes[1].terms[0].name}km away from city center
+              {hotel.attributes[1].options[0]}km away from city center
             </Card.Text>
           </div>
-          <Card.Text>{hotel.prices.price} NOK per night</Card.Text>
+          <Card.Text>{hotel.price} NOK per night</Card.Text>
         </Card.Body>
       </Card>
     </Link>

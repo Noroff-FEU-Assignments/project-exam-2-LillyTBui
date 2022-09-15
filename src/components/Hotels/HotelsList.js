@@ -6,10 +6,10 @@ import HotelItem from "./HotelItem";
 import ErrorMessage from "../UI/ErrorMessage";
 import Spinner from "react-bootstrap/Spinner";
 
-const API = API_URL + "wc/store/products/";
-// const API =
-//   API_URL +
-//   `wc/v3/products?consumer_key=${process.env.REACT_APP_WC_CONSUMER_KEY}&consumer_secret=${process.env.REACT_APP_WC_CONSUMER_SECRET}`;
+// const API = API_URL + "wc/store/products/";
+const API =
+  API_URL +
+  `wc/v3/products?consumer_key=${process.env.REACT_APP_WC_CONSUMER_KEY}&consumer_secret=${process.env.REACT_APP_WC_CONSUMER_SECRET}&per_page=90`;
 
 function HotelsList({ category }) {
   const [hotels, setHotels] = useState([]);
