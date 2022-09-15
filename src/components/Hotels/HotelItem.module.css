@@ -1,0 +1,55 @@
+.card {
+  height: 400px;
+  border: none;
+}
+
+.card:hover {
+  opacity: 0.9;
+  color: var(--clr-primary-blue);
+}
+
+.card_body {
+  margin: 0;
+  padding: 1rem 0rem 0rem 0rem;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hotel_container {
+  margin: 1rem 0;
+  max-width: 300px;
+}
+
+.title_container {
+  display: flex;
+  align-items: center;
+}
+
+.title,
+.price {
+  font-weight: normal;
+}
+
+.title {
+  font-size: var(--fs-700);
+}
+
+.price {
+  font-size: var(--fs-500);
+}
+
+.star_icon {
+  margin: 0rem 0.5rem;
+}
+
+.img_container {
+  margin: 1rem 0rem;
+  height: 300px;
+  max-width: 300px;
+}
+
+.img {
+  border-radius: 10px;
+}

@@ -56,28 +56,23 @@
   }
 }
 
-.categories_div {
+.category_tab {
+  margin: 1rem 0;
   display: flex;
   justify-content: center;
-  margin: 2rem 0;
+  border: none;
 }
 
-.category_name {
+.category_tab li button {
+  text-transform: uppercase;
   font-family: var(--ff-sans-title);
-  font-weight: bold;
-  letter-spacing: 0.5px;
-  margin: 0rem 1rem;
-  color: gray;
-  border-bottom: 2px solid gray;
+  border: 2px solid transparent !important;
+  color: var(--clr-primary-light-blue);
 }
 
-.category_name:hover {
-  cursor: pointer;
-  color: var(--clr-primary-blue);
-  border-color: var(--clr-primary-blue);
-}
-
-.active {
-  color: var(--clr-secondary-dark);
-  border-color: var(--clr-secondary-dark);
+.hotel_list_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 2rem;
+  margin-bottom: 2rem;
 }

@@ -148,6 +148,10 @@ h2 {
   text-transform: uppercase;
 }
 
+.bold {
+  font-weight: bold;
+}
+
 .fs-800 {
   font-size: var(--fs-800);
 }
@@ -176,4 +180,9 @@ h2 {
 
 a {
   text-decoration: none;
+  color: var(--clr-secondary-dark);
+}
+
+.flex {
+  display: flex !important;
 }

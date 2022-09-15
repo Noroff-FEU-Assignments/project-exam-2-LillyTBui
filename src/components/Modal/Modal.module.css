@@ -1,0 +1,30 @@
+/* Modal header*/
+.modal_header,
+.modal_footer {
+  border: none;
+}
+
+/* Modal footer*/
+.modal_footer {
+  display: flex;
+  justify-content: center;
+}
+
+.cancel_btn {
+  background-color: var(--clr-secondary-dark);
+  border-color: var(--clr-secondary-dark);
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+}
+
+.cancel_btn:hover {
+  color: var(--clr-secondary-dark);
+  border-color: var(--clr-secondary-dark);
+  background-color: white;
+}
+
+@media (min-width: 576px) {
+  .modal_form {
+    padding: 2rem;
+  }
+}

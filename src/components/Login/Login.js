@@ -1,12 +1,18 @@
-import React from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Button from "../UI/Button";
 import ErrorMessage from "../UI/ErrorMessage";
+import { API_URL, TOKEN_PATH } from "../../constants/api";
+import axios from "axios";
+import AuthContext from "../../Context/AuthContext";
 
 import style from "./Login.module.css";
+import { useContext } from "react";
+
+const url = API_URL + TOKEN_PATH;
 
 const schema = yup.object().shape({
   username: yup.string().required("Please enter your username"),
@@ -14,6 +20,12 @@ const schema = yup.object().shape({
 });
 
 function Login() {
+  const [submitting, setSubmitting] = useState(false);
+  const [loginError, setLoginError] = useState(null);
+  const [auth, setAuth] = useContext(AuthContext);
+
+  let navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -22,11 +34,22 @@ function Login() {
     resolver: yupResolver(schema),
   });
 
-  const [loginError, setLoginError] = useState(false);
+  async function onLogin(data) {
+    setSubmitting(true);
+    setLoginError(null);
 
-  function onLogin(data) {
     console.log(data);
-    setLoginError(true);
+    try {
+      const response = await axios.post(url, data);
+      console.log("response", response.data);
+      setAuth(response.data);
+      navigate("/dashboard");
+    } catch (error) {
+      console.log("error", error);
+      setLoginError(error.toString());
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -40,7 +63,11 @@ function Login() {
           <span className={style.error}>{errors.username.message}</span>
         )}
         <label htmlFor="password">Password</label>
-        <input {...register("password", { required: true })} id="password" />
+        <input
+          type="password"
+          {...register("password", { required: true })}
+          id="password"
+        />
         {errors.password && (
           <span className={style.error}>{errors.password.message}</span>
         )}

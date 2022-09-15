@@ -1,0 +1,63 @@
+.establishment {
+  background-color: white;
+  padding: 2rem 0rem;
+}
+
+.icon_plus {
+  margin-right: 0.5rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  max-width: 300px;
+  width: 100%;
+}
+
+.form label {
+  margin-top: 0.5rem;
+}
+
+.form input,
+.form textarea {
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+
+.form h4 {
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.details_div {
+  grid-area: details;
+}
+
+.facilities_div {
+  grid-area: facilities;
+}
+
+.resources_div {
+  grid-area: resources;
+}
+
+@media (min-width: 768px) {
+  .form_container {
+    display: grid;
+    grid-template-areas:
+      "details facilities"
+      "details resources";
+  }
+
+  .facilities_div,
+  .resources_div {
+    margin-left: 2rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .form_container {
+    grid-template-areas: "details facilities resources";
+  }
+}

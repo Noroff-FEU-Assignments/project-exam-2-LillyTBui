@@ -1,0 +1,36 @@
+.trip_form {
+  background-color: var(--clr-secondary-blue);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.trip_form_input {
+  display: flex;
+  flex-direction: column;
+}
+
+.trip_form_input label {
+  margin: 0.5rem 0;
+}
+
+.trip_form input,
+select {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+
+.price_details_div {
+  margin-bottom: 2rem;
+}
+
+.price_details {
+  margin-top: 0.5rem;
+  border-bottom: 1px solid gray;
+  padding-bottom: 1rem;
+}
+.price_details_total {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+}

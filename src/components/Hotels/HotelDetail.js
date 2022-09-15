@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { API_URL } from "../../constants/api";
@@ -9,6 +9,8 @@ import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import ErrorMessage from "../UI/ErrorMessage";
 import RemoveTags from "../UI/RemoveTags";
+import ModalContext from "../../Context/Modal-context";
+import Modal from "../Modal/Modal";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faStar } from "@fortawesome/free-solid-svg-icons";
@@ -18,6 +20,11 @@ function HotelDetail() {
   const [hotel, setHotel] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [show, setShow] = useState(false);
+
+  const value = useMemo(() => ({ show, setShow }), [show]);
+
+  const handleShow = () => setShow(true);
 
   let navigate = useNavigate();
 
@@ -62,7 +69,7 @@ function HotelDetail() {
   }
 
   return (
-    <>
+    <ModalContext.Provider value={value}>
       <Container>
         <Link to="/">
           <p className={style.breadcrumb}>
@@ -111,17 +118,20 @@ function HotelDetail() {
                   <h3 className={style.tab_content_header}>Facilities</h3>
                   <ul>
                     {hotel.tags.map((tag) => {
-                      return <li>{tag.name}</li>;
+                      return <li key={tag.id}>{tag.name}</li>;
                     })}
                   </ul>
                 </div>
               </Tab>
             </Tabs>
           </div>
-          <button className={style.reserve_btn}>Reserve</button>
+          <button className={style.reserve_btn} onClick={handleShow}>
+            Reserve
+          </button>
         </div>
+        <Modal price={hotel.price} />
       </Container>
-    </>
+    </ModalContext.Provider>
   );
 }
 

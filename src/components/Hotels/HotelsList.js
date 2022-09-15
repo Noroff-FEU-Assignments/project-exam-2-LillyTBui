@@ -7,8 +7,11 @@ import ErrorMessage from "../UI/ErrorMessage";
 import Spinner from "react-bootstrap/Spinner";
 
 const API = API_URL + "wc/store/products/";
+// const API =
+//   API_URL +
+//   `wc/v3/products?consumer_key=${process.env.REACT_APP_WC_CONSUMER_KEY}&consumer_secret=${process.env.REACT_APP_WC_CONSUMER_SECRET}`;
 
-function HotelsList() {
+function HotelsList({ category }) {
   const [hotels, setHotels] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -17,8 +20,10 @@ function HotelsList() {
     async function fetchData() {
       try {
         const response = await axios.get(API);
-        console.log(response.data);
-        setHotels(response.data);
+        const filtered_data = response.data.filter(
+          (hotel) => hotel.categories[0].name === category
+        );
+        setHotels(filtered_data);
       } catch (error) {
         setError(error.toString());
       } finally {
@@ -41,12 +46,11 @@ function HotelsList() {
   }
 
   return (
-    <div>
+    <>
       {hotels.map((hotel) => {
-        const { id, name } = hotel;
-        return <HotelItem key={id} id={id} title={name} />;
+        return <HotelItem key={hotel.id} hotel={hotel} />;
       })}
-    </div>
+    </>
   );
 }
 
