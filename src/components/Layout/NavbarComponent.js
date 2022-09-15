@@ -1,17 +1,26 @@
 import style from "./NavbarComponent.module.css";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import AuthContext, { AuthProvider } from "../../Context/AuthContext";
-import NavbarUserLink from "./NavbarUserLink";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 
 function NavbarComponent() {
-  const [auth] = useContext(AuthContext);
+  const [auth, setAuth] = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  function logout() {
+    setAuth(null);
+    navigate("/");
+  }
+
+  function show() {
+    document.getElementById("panel").classList.toggle("flex");
+  }
 
   return (
     <header>
@@ -29,7 +38,20 @@ function NavbarComponent() {
                     <NavLink to="/contact" className={style.link}>
                       Contact
                     </NavLink>
-                    <NavbarUserLink />
+                    <div className={style.accordion}>
+                      <button className={style.user_button} onClick={show}>
+                        <FontAwesomeIcon
+                          icon={faCircleUser}
+                          className={style.icon}
+                        />
+                      </button>
+                      <div className={style.panel} id="panel">
+                        <NavLink to="/dashboard">Dashboard</NavLink>
+                        <button onClick={logout} className={style.logout}>
+                          Log out
+                        </button>
+                      </div>
+                    </div>
                   </>
                 ) : (
                   <>
