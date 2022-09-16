@@ -11,6 +11,7 @@
 .link {
   color: var(--clr-secondary-dark);
   display: inline-block;
+  margin-top: 1rem;
 }
 
 .link::after {
@@ -26,12 +27,13 @@
 
 .link:hover::after {
   background-color: var(--clr-secondary-dark);
-  width: 80px;
+  width: 55px;
 }
 
 @media (min-width: 576px) {
   .link {
     margin-left: 1rem;
+    margin-top: initial;
   }
 
   .link:hover::after {
@@ -45,6 +47,13 @@
   color: var(--clr-secondary-dark);
 }
 
+.user_button {
+  background-color: white;
+  border: none;
+  padding-left: 0;
+  position: relative;
+}
+
 .panel {
   display: none;
   flex-direction: column;
@@ -52,20 +61,16 @@
   position: absolute;
   background-color: white;
   padding: 0rem 1rem 1rem 1rem;
-  left: 0;
+  right: 0;
 }
 
 @media (min-width: 576px) {
-  .panel {
-    left: initial;
-    right: 0;
+  .user_button {
+    padding-left: 2rem;
   }
-}
-
-.user_button {
-  background-color: white;
-  border: none;
-  padding-left: 1rem;
+  .panel {
+    right: initial;
+  }
 }
 
 .logout {

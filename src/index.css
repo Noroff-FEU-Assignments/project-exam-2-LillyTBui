@@ -186,3 +186,7 @@ a {
 .flex {
   display: flex !important;
 }
+
+.ms-auto {
+  align-items: flex-end;
+}

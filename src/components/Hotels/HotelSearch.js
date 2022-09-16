@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { API_URL } from "../../constants/api";
-import HotelItem from "./HotelItem";
 import ErrorMessage from "../UI/ErrorMessage";
 import Spinner from "react-bootstrap/Spinner";
+import style from "./HotelSearch.module.css";
 
-// const API = API_URL + "wc/store/products/";
 const API =
   API_URL +
   `wc/v3/products?consumer_key=${process.env.REACT_APP_WC_CONSUMER_KEY}&consumer_secret=${process.env.REACT_APP_WC_CONSUMER_SECRET}&per_page=90`;
 
-function HotelsList({ category }) {
+function HotelSearch({ input }) {
   const [hotels, setHotels] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -19,10 +19,7 @@ function HotelsList({ category }) {
     async function fetchData() {
       try {
         const response = await axios.get(API);
-        const filtered_data = response.data.filter(
-          (hotel) => hotel.categories[0].name === category
-        );
-        setHotels(filtered_data);
+        setHotels(response.data);
       } catch (error) {
         setError(error.toString());
       } finally {
@@ -44,13 +41,25 @@ function HotelsList({ category }) {
     return <ErrorMessage>An error occurred: {error}</ErrorMessage>;
   }
 
+  const filtered_data = hotels.filter((hotel) => {
+    return hotel.name.toLowerCase().startsWith(input.toLowerCase());
+  });
+
   return (
-    <>
-      {hotels.map((hotel) => {
-        return <HotelItem key={hotel.id} hotel={hotel} />;
-      })}
-    </>
+    <div className={style.result_div}>
+      <ul className={style.result_ul}>
+        {filtered_data.length === 0 && <em>No results found</em>}
+        {filtered_data.length !== 0 &&
+          filtered_data.map((hotel) => {
+            return (
+              <Link to={`detail/${hotel.id}`} key={hotel.id}>
+                <li key={hotel.id}>{hotel.name}</li>
+              </Link>
+            );
+          })}
+      </ul>
+    </div>
   );
 }
 
-export default HotelsList;
+export default HotelSearch;

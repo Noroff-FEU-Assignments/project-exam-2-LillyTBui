@@ -1,7 +1,5 @@
-import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import style from "./HotelItem.module.css";
@@ -9,7 +7,6 @@ import style from "./HotelItem.module.css";
 import Card from "react-bootstrap/Card";
 
 function HotelItem({ hotel }) {
-  console.log(hotel);
   return (
     <Link to={`detail/${hotel.id}`} key={hotel.id}>
       <Card className={style.card}>

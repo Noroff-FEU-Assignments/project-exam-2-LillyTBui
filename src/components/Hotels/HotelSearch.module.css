@@ -1,0 +1,22 @@
+.result_div {
+  margin: 0.5rem 0rem 0rem 0rem;
+  max-height: 60px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.result_ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.result_ul a li {
+  padding-left: 1rem;
+  background-color: rgba(211, 211, 211, 0.175);
+}
+
+.result_ul a:hover {
+  color: blue;
+  text-decoration: underline;
+}
