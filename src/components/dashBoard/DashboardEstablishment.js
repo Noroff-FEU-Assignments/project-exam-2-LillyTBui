@@ -3,42 +3,45 @@ import Container from "react-bootstrap/Container";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import Button from "../UI/Button";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 
 import { API_URL } from "../../constants/api";
-import axios from "axios";
 import { useState } from "react";
+import useAxios from "../../hooks/useAxios";
 
-const url =
-  API_URL +
-  `wc/v3/products?consumer_key=${process.env.REACT_APP_WC_CONSUMER_KEY}&consumer_secret=${process.env.REACT_APP_WC_CONSUMER_SECRET}&Content-Type:application/json`;
+const url = API_URL + "wp/v2/hotels";
 
 const schema = yup.object().shape({
   name: yup.string().required("Please enter a name").min(3),
   type: yup.string().required("Please choose an establishment type"),
   address: yup.string().required("Please enter an address"),
+  address_description: yup
+    .string()
+    .required("Please write a short description")
+    .min(10),
   price: yup.number().required("Please enter a price").min(50),
   rating: yup.number().required("Needs to be between 0 and 5").min(0).max(5),
   description: yup
     .string()
     .required("Please enter a short description")
     .min(10),
+  facilities: yup.array().required("Add at least one facility").min(1),
   images: yup
     .string()
     .url()
-    .test((value) => {
-      return value.endsWith(".jpg") || value.endsWith(".jpeg");
-    })
-    .required("Please upload an image url that ends with .jpg or .jpeg"),
-  facilities: yup.array().required("Add at least one facility").min(1),
+    // .test((value) => {
+    //   return value.endsWith(".jpg") || value.endsWith(".jpeg");
+    // })
+    .required("Please upload an image url"),
 });
 
 function DashboardEstablishment() {
   const [submitting, setSubmitting] = useState(false);
   const [serverError, setServerError] = useState(null);
+
+  const http = useAxios();
 
   const {
     register,
@@ -54,43 +57,31 @@ function DashboardEstablishment() {
     const image_url = data.images;
     console.log(data.facilities);
 
-    //format the tags into objects with id
-    let tags = [];
-    data.facilities.forEach((tag) => {
-      tags.push({ id: tag });
+    //create a string of facilities because array is not accepted
+    let facilities = "";
+    data.facilities.forEach((facility) => {
+      facilities += facility + ", ";
     });
 
     //create correct formatted data before posting it
     const formatted_data = {
-      name: data.name,
-      type: "simple",
-      regular_price: data.price.toString(),
-      description: data.description,
-      short_description:
-        "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
-      categories: [
-        {
-          id: data.type,
-        },
-      ],
-      images: [
-        {
-          src: image_url,
-        },
-      ],
-      tags: tags,
-      attributes: [
-        {
-          id: 0,
-          name: "Address",
-          terms: [{ name: "gate 21" }],
-        },
-      ],
+      status: "publish",
+      title: data.name,
+      acf: {
+        type: data.type,
+        address: data.address,
+        address_description: data.address_description,
+        price: data.price,
+        rating: data.rating,
+        description: data.description,
+        image_url: data.images,
+        facilities: facilities,
+      },
     };
 
-    console.log(formatted_data);
+    // console.log(formatted_data);
     try {
-      const response = await axios.post(url, formatted_data);
+      const response = await http.post(url, formatted_data);
       console.log("response", response.data);
     } catch (error) {
       console.log("error", error);
@@ -121,9 +112,9 @@ function DashboardEstablishment() {
 
             <label htmlFor="type">Type</label>
             <select {...register("type")}>
-              <option value="26">Hotel</option>
-              <option value="37">Bed and breakfast</option>
-              <option value="28">Guesthouse</option>
+              <option value="Hotel">Hotel</option>
+              <option value="Bed and breakfast">Bed and breakfast</option>
+              <option value="Guesthouse">Guesthouse</option>
             </select>
             {errors.type && (
               <span className={style.error}>{errors.type.message}</span>
@@ -134,6 +125,19 @@ function DashboardEstablishment() {
             {errors.address && (
               <span className={style.error}>{errors.address.message}</span>
             )}
+
+            <label htmlFor="address_description">Address description</label>
+            <textarea
+              {...register("address_description", { required: true })}
+              id="address_description"
+              rows={5}
+            />
+            {errors.address_description && (
+              <span className={style.error}>
+                {errors.address_description.message}
+              </span>
+            )}
+
             <label htmlFor="price">Price</label>
             <input
               type="number"
@@ -175,13 +179,13 @@ function DashboardEstablishment() {
               id="facilities"
               multiple
             >
-              <option value="32">Air condition</option>
-              <option value="36">Breakfast</option>
-              <option value="31">No smoking</option>
-              <option value="30">Parking</option>
-              <option value="29">Pets allowed</option>
-              <option value="35">Restaurant</option>
-              <option value="34">Wi-fi</option>
+              <option value="Air condition">Air condition</option>
+              <option value="Breakfast">Breakfast</option>
+              <option value="No smoking">No smoking</option>
+              <option value="Parking">Parking</option>
+              <option value="Pets allowed">Pets allowed</option>
+              <option value="Restaurant">Restaurant</option>
+              <option value="Wi-fi">Wi-fi</option>
             </select>
             {errors.facilities && (
               <span className={style.error}>{errors.facilities.message}</span>
@@ -201,7 +205,7 @@ function DashboardEstablishment() {
             )}
           </div>
           <div className={style.form_button_div}>
-            <button className={style.form_button_clear}>Clear</button>
+            {/* <button className={style.form_button_clear}>Clear</button> */}
             <button className={style.form_button_add}>Add</button>
           </div>
         </form>
