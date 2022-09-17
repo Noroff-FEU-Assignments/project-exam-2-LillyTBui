@@ -60,7 +60,7 @@ function DashboardEstablishment() {
     //create a string of facilities because array is not accepted
     let facilities = "";
     data.facilities.forEach((facility) => {
-      facilities += facility + ", ";
+      facilities += facility + ",";
     });
 
     //create correct formatted data before posting it

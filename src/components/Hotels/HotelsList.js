@@ -5,10 +5,10 @@ import HotelItem from "./HotelItem";
 import ErrorMessage from "../UI/ErrorMessage";
 import Spinner from "react-bootstrap/Spinner";
 
-// const API = API_URL + "wc/store/products/";
-const API =
-  API_URL +
-  `wc/v3/products?consumer_key=${process.env.REACT_APP_WC_CONSUMER_KEY}&consumer_secret=${process.env.REACT_APP_WC_CONSUMER_SECRET}&per_page=90`;
+const API = API_URL + "wp/v2/hotels";
+// const API =
+//   API_URL +
+//   `wc/v3/products?consumer_key=${process.env.REACT_APP_WC_CONSUMER_KEY}&consumer_secret=${process.env.REACT_APP_WC_CONSUMER_SECRET}&per_page=90`;
 
 function HotelsList({ category }) {
   const [hotels, setHotels] = useState([]);
@@ -20,7 +20,7 @@ function HotelsList({ category }) {
       try {
         const response = await axios.get(API);
         const filtered_data = response.data.filter(
-          (hotel) => hotel.categories[0].name === category
+          (hotel) => hotel.acf.type === category
         );
         setHotels(filtered_data);
       } catch (error) {
