@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
+import style from "./DashboardMessages.module.css";
+import { useState, useEffect } from "react";
 import { API_URL } from "../../constants/api";
 import axios from "axios";
+import Accordion from "react-bootstrap/Accordion";
 import Spinner from "react-bootstrap/Spinner";
 import ErrorMessage from "../UI/ErrorMessage";
 import DashbordMessage from "./DashbordMessage";
-import style from "./DashboardMessages.module.css";
 
-import Accordion from "react-bootstrap/Accordion";
-import Table from "react-bootstrap/Table";
-
-const url = API_URL + "wp/v2/posts/";
+const url =
+  API_URL +
+  `wc/v3/products?consumer_key=${process.env.REACT_APP_WC_CONSUMER_KEY}&consumer_secret=${process.env.REACT_APP_WC_CONSUMER_SECRET}&per_page=90`;
 
 function DashboardMessages() {
   const [messages, setMessages] = useState([]);
@@ -20,8 +20,12 @@ function DashboardMessages() {
     async function fetchData() {
       try {
         const response = await axios.get(url);
-        console.log(response.data);
-        setMessages(response.data);
+        // console.log(response.data);
+        const data = response.data.filter(
+          (message) => message.categories[0].name === "Message"
+        );
+        // console.log(data);
+        setMessages(data);
       } catch (error) {
         setError(error.toString());
       } finally {

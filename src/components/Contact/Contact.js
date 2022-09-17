@@ -1,10 +1,17 @@
 import style from "./Contact.module.css";
-
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Button from "../UI/Button";
 import Accordion from "react-bootstrap/Accordion";
+import useAxios from "../../hooks/useAxios";
+import { API_URL } from "../../constants/api";
+
+//see på contact form 7
+const url =
+  API_URL +
+  `wc/v3/products?consumer_key=${process.env.REACT_APP_WC_CONSUMER_KEY}&consumer_secret=${process.env.REACT_APP_WC_CONSUMER_SECRET}&Content-Type: application/json`;
 
 const schema = yup.object().shape({
   fullName: yup.string().required("Please enter your full name").min(5),
@@ -17,6 +24,11 @@ const schema = yup.object().shape({
 });
 
 function Contact() {
+  const [submitting, setSubmitting] = useState(false);
+  const [serverError, setServerError] = useState(null);
+
+  const http = useAxios();
+
   const {
     register,
     handleSubmit,
@@ -25,8 +37,44 @@ function Contact() {
     resolver: yupResolver(schema),
   });
 
-  function onSend(data) {
+  async function onSubmit(data) {
+    setSubmitting(true);
     console.log(data);
+    const formatted_data = {
+      name: data.subject,
+      description: data.message,
+      categories: [
+        {
+          id: 38,
+          name: "Message",
+          slug: "message",
+          link: "https://sunnyday.one/project-exam-2-wordpress/product-category/message/",
+        },
+      ],
+      attributes: [
+        {
+          id: 0,
+          name: "name",
+          terms: [{ id: 0, name: data.fullName }],
+        },
+        {
+          id: 0,
+          name: "email",
+          terms: [{ id: 0, name: data.email }],
+        },
+      ],
+    };
+
+    console.log(formatted_data);
+    try {
+      const response = await http.post(url, formatted_data);
+      console.log("response", response.data);
+    } catch (error) {
+      console.log("error", error);
+      setServerError(error.toString());
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -36,7 +84,7 @@ function Contact() {
         Need to get in touch with us? Either fill out the form with your inquiry
         or maybe you can find your answer in our Q&A section below.
       </p>
-      <form onSubmit={handleSubmit(onSend)} className={style.form}>
+      <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
         <label htmlFor="fullName">Full name</label>
         <input {...register("fullName")} id="fullName" />
         {errors.fullName && (
