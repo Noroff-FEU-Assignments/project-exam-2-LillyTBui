@@ -79,6 +79,13 @@ function DashboardEstablishment() {
         },
       ],
       tags: tags,
+      attributes: [
+        {
+          id: 0,
+          name: "Address",
+          terms: [{ name: "gate 21" }],
+        },
+      ],
     };
 
     console.log(formatted_data);
