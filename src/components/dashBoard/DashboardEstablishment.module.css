@@ -76,6 +76,10 @@
   border: 1px solid green;
 }
 
+.error {
+  color: red;
+}
+
 @media (min-width: 768px) {
   .form_container {
     display: grid;

@@ -2,13 +2,18 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { API_URL } from "../../constants/api";
+import PropTypes from "prop-types";
 import ErrorMessage from "../UI/ErrorMessage";
 import Spinner from "react-bootstrap/Spinner";
 import style from "./HotelSearch.module.css";
 
-const API =
-  API_URL +
-  `wc/v3/products?consumer_key=${process.env.REACT_APP_WC_CONSUMER_KEY}&consumer_secret=${process.env.REACT_APP_WC_CONSUMER_SECRET}&per_page=90`;
+const API = API_URL + "wp/v2/hotels?per_page=90";
+
+/**
+ * Search for the hotels
+ * @param {string}  input search input from user
+ * @returns hotels matching the search input
+ */
 
 function HotelSearch({ input }) {
   const [hotels, setHotels] = useState([]);
@@ -42,7 +47,7 @@ function HotelSearch({ input }) {
   }
 
   const filtered_data = hotels.filter((hotel) => {
-    return hotel.name.toLowerCase().startsWith(input.toLowerCase());
+    return hotel.title.rendered.toLowerCase().startsWith(input.toLowerCase());
   });
 
   return (
@@ -53,7 +58,7 @@ function HotelSearch({ input }) {
           filtered_data.map((hotel) => {
             return (
               <Link to={`detail/${hotel.id}`} key={hotel.id}>
-                <li key={hotel.id}>{hotel.name}</li>
+                <li key={hotel.id}>{hotel.title.rendered}</li>
               </Link>
             );
           })}
@@ -61,5 +66,9 @@ function HotelSearch({ input }) {
     </div>
   );
 }
+
+HotelSearch.propTypes = {
+  input: PropTypes.string,
+};
 
 export default HotelSearch;

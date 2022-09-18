@@ -21,8 +21,9 @@ const schema = yup.object().shape({
     .string()
     .required("Please write a short description")
     .min(10),
+  km: yup.number().required("Please enter km away from center"),
   price: yup.number().required("Please enter a price").min(50),
-  rating: yup.number().required("Needs to be between 0 and 5").min(0).max(5),
+  rating: yup.number().required("Needs to be between 0 and 5").min(0.1).max(5),
   description: yup
     .string()
     .required("Please enter a short description")
@@ -40,12 +41,14 @@ const schema = yup.object().shape({
 function DashboardEstablishment() {
   const [submitting, setSubmitting] = useState(false);
   const [serverError, setServerError] = useState(null);
+  const [successful, setSuccessful] = useState(false);
 
   const http = useAxios();
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -71,6 +74,7 @@ function DashboardEstablishment() {
         type: data.type,
         address: data.address,
         address_description: data.address_description,
+        km: data.km,
         price: data.price,
         rating: data.rating,
         description: data.description,
@@ -83,6 +87,8 @@ function DashboardEstablishment() {
     try {
       const response = await http.post(url, formatted_data);
       console.log("response", response.data);
+      reset();
+      setSuccessful(true);
     } catch (error) {
       console.log("error", error);
       setServerError(error.toString());
@@ -98,9 +104,18 @@ function DashboardEstablishment() {
           <FontAwesomeIcon icon={faCirclePlus} className={style.icon_plus} />
           Add a new establishment
         </h3>
+        {serverError && (
+          <p className="error">There is an server error. Please try again</p>
+        )}
+        {successful && (
+          <p className="success">Establishment successfully uploaded!</p>
+        )}
         <form
           onSubmit={handleSubmit(onSubmit)}
           className={style.form_container}
+          onClick={() => {
+            setSuccessful(false);
+          }}
         >
           <div className={`${style.form} ${style.details_div}`}>
             <h4>Details</h4>
@@ -138,6 +153,12 @@ function DashboardEstablishment() {
               </span>
             )}
 
+            <label htmlFor="km">Km away from city center</label>
+            <input {...register("km", { required: true })} id="km" />
+            {errors.km && (
+              <span className={style.error}>{errors.km.message}</span>
+            )}
+
             <label htmlFor="price">Price</label>
             <input
               type="number"
@@ -152,7 +173,8 @@ function DashboardEstablishment() {
             <input
               {...register("rating", { required: true })}
               id="rating"
-              min={0}
+              min={0.1}
+              step="0.01"
               max={5}
               type="number"
             />
@@ -205,7 +227,14 @@ function DashboardEstablishment() {
             )}
           </div>
           <div className={style.form_button_div}>
-            {/* <button className={style.form_button_clear}>Clear</button> */}
+            <button
+              className={style.form_button_clear}
+              onClick={() => {
+                reset();
+              }}
+            >
+              Clear
+            </button>
             <button className={style.form_button_add}>Add</button>
           </div>
         </form>

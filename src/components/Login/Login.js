@@ -1,4 +1,5 @@
-import { useState } from "react";
+import style from "./Login.module.css";
+import { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
@@ -9,9 +10,6 @@ import { API_URL, TOKEN_PATH } from "../../constants/api";
 import axios from "axios";
 import AuthContext from "../../Context/AuthContext";
 
-import style from "./Login.module.css";
-import { useContext } from "react";
-
 const url = API_URL + TOKEN_PATH;
 
 const schema = yup.object().shape({
@@ -19,10 +17,15 @@ const schema = yup.object().shape({
   password: yup.string().required("Please enter your password"),
 });
 
+/**
+ * Generates a login page
+ * Checks user input and saves credential if login is success
+ * @returns login form
+ */
+
 function Login() {
-  const [submitting, setSubmitting] = useState(false);
   const [loginError, setLoginError] = useState(null);
-  const [auth, setAuth] = useContext(AuthContext);
+  const [setAuth] = useContext(AuthContext);
 
   let navigate = useNavigate();
 
@@ -35,20 +38,15 @@ function Login() {
   });
 
   async function onLogin(data) {
-    setSubmitting(true);
     setLoginError(null);
 
-    console.log(data);
     try {
       const response = await axios.post(url, data);
-      console.log("response", response.data);
       setAuth(response.data);
       navigate("/dashboard");
     } catch (error) {
       console.log("error", error);
       setLoginError(error.toString());
-    } finally {
-      setSubmitting(false);
     }
   }
 
@@ -71,11 +69,9 @@ function Login() {
         {errors.password && (
           <span className={style.error}>{errors.password.message}</span>
         )}
-        <div className={style.checkbox__div}>
-          <input type="checkbox" id="checkLogin" className={style.checkbox} />
-          <label htmlFor="checkLogin">Keep me logged in</label>
+        <div className={style.button_div}>
+          <Button>Login</Button>
         </div>
-        <Button>Login</Button>
       </form>
     </div>
   );

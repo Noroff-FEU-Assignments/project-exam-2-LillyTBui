@@ -1,14 +1,18 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { API_URL } from "../../constants/api";
+import PropTypes from "prop-types";
 import HotelItem from "./HotelItem";
 import ErrorMessage from "../UI/ErrorMessage";
 import Spinner from "react-bootstrap/Spinner";
 
-const API = API_URL + "wp/v2/hotels";
-// const API =
-//   API_URL +
-//   `wc/v3/products?consumer_key=${process.env.REACT_APP_WC_CONSUMER_KEY}&consumer_secret=${process.env.REACT_APP_WC_CONSUMER_SECRET}&per_page=90`;
+const API = API_URL + "wp/v2/hotels?per_page=90";
+
+/**
+ * Returns a list of establishments
+ * @param {string} category category to filter the hotels
+ * @returns hotels matching the category
+ */
 
 function HotelsList({ category }) {
   const [hotels, setHotels] = useState([]);
@@ -52,5 +56,9 @@ function HotelsList({ category }) {
     </>
   );
 }
+
+HotelsList.propTypes = {
+  category: PropTypes.string,
+};
 
 export default HotelsList;

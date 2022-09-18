@@ -15,6 +15,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faStar } from "@fortawesome/free-solid-svg-icons";
 import style from "./HotelDetail.module.css";
 
+/**
+ * Generates a hotel detail page
+ * @returns details about a specific hotel and enquiry form
+ */
+
 function HotelDetail() {
   const [hotel, setHotel] = useState([]);
   const [loading, setLoading] = useState(true);

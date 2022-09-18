@@ -9,6 +9,11 @@ import AuthContext, { AuthProvider } from "../../Context/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 
+/**
+ * Generates a navbar component
+ * @returns navbar component
+ */
+
 function NavbarComponent() {
   const [auth, setAuth] = useContext(AuthContext);
   const navigate = useNavigate();

@@ -25,15 +25,12 @@
   border: 1px solid gray;
 }
 
+.button_div {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
 .error {
   color: red;
-}
-
-.checkbox__div {
-  margin: 1.5rem;
-  margin-left: 0;
-}
-
-.checkbox {
-  margin-right: 0.5rem;
 }

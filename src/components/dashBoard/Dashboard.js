@@ -7,9 +7,7 @@ import style from "./Dashboard.module.css";
 function Dashboard() {
   return (
     <div className={style.dashboard}>
-      <Container>
-        <DashboardMessages />
-      </Container>
+      <Container>{/* <DashboardMessages /> */}</Container>
       <DashboardEstablishment />
     </div>
   );

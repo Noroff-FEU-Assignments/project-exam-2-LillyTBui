@@ -3,11 +3,15 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import style from "./HotelItem.module.css";
-
 import Card from "react-bootstrap/Card";
 
+/**
+ * Generates a hotel item
+ * @param {object} hotel
+ * @returns a card of the given hotel item with information
+ */
+
 function HotelItem({ hotel }) {
-  console.log(hotel);
   return (
     <Link to={`detail/${hotel.id}`} key={hotel.id}>
       <Card className={style.card}>

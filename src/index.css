@@ -190,3 +190,23 @@ a {
 .ms-auto {
   align-items: flex-end;
 }
+
+.error {
+  margin-top: 1rem;
+  background-color: rgb(247, 201, 201);
+  border: 1px solid red;
+  color: red;
+  padding: 0.5rem 1rem;
+}
+
+.success {
+  margin-top: 1rem;
+  background-color: rgb(201, 247, 206);
+  border: 1px solid green;
+  color: green;
+  padding: 0.5rem 1rem;
+}
+
+.mt-2 {
+  margin-top: 2rem;
+}

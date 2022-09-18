@@ -1,0 +1,23 @@
+.accordion__div {
+  text-align: center;
+}
+
+.accordion__title {
+  margin: 2rem;
+}
+
+.accordion {
+  min-width: 200px;
+  max-width: 500px;
+}
+
+.accordion__header {
+  background-color: var(--clr-secondary-blue);
+}
+.accordion__body {
+  text-align: left;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: var(--clr-secondary-blue);
+}

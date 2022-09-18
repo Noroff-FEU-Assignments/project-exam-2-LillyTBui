@@ -1,8 +1,11 @@
-import React from "react";
 import style from "./Footer.module.css";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopyright } from "@fortawesome/free-regular-svg-icons";
+
+/**
+ * Generates a footer
+ * @returns footer
+ */
 
 function Footer() {
   return (
