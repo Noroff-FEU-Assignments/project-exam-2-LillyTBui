@@ -52,7 +52,7 @@ function DashboardEnquiries() {
       <div className={style.table_div}>
         <h5 className={style.table_heading}>Hotel</h5>
       </div>
-      {enquiries.length == 0 && <p>No enquiries yet</p>}
+      {enquiries.length === 0 && <p>No enquiries yet</p>}
       <Accordion>
         {enquiries.map((enquiry) => {
           return <DashboardEnquiry key={enquiry.id} enquiry={enquiry} />;

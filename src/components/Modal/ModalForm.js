@@ -116,6 +116,7 @@ function ModalForm({ name, price }) {
             min={minDate}
             max={dateEnd}
             onChange={changeDateStart}
+            className={style.trip_form_inputs}
           />
           {dateError && (
             <span className={style.error}>Please choose your trip date</span>
@@ -130,6 +131,7 @@ function ModalForm({ name, price }) {
             min={dateStart}
             max="2023-12-31"
             onChange={changeDateEnd}
+            className={style.trip_form_inputs}
           />
           {dateError && (
             <span className={style.error}>Please choose your trip date</span>
@@ -137,7 +139,12 @@ function ModalForm({ name, price }) {
         </div>
         <div className={style.trip_form_input}>
           <label htmlFor="travelers">Select number of travelers *</label>
-          <select {...register("travelers")} name="travelers" id="travelers">
+          <select
+            {...register("travelers")}
+            name="travelers"
+            id="travelers"
+            className={style.trip_form_inputs}
+          >
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>

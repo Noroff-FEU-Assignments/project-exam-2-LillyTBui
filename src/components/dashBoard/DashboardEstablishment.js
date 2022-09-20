@@ -29,17 +29,15 @@ const schema = yup.object().shape({
     .required("Please enter a short description")
     .min(10),
   facilities: yup.array().required("Add at least one facility").min(1),
-  images: yup
-    .string()
-    .url()
-    // .test((value) => {
-    //   return value.endsWith(".jpg") || value.endsWith(".jpeg");
-    // })
-    .required("Please upload an image url"),
+  images: yup.string().url().required("Please upload an image url"),
 });
 
+/**
+ * Generates a form for adding a new establishment
+ * @returns establishment form and error/success message
+ */
+
 function DashboardEstablishment() {
-  const [submitting, setSubmitting] = useState(false);
   const [serverError, setServerError] = useState(null);
   const [successful, setSuccessful] = useState(false);
 
@@ -55,11 +53,6 @@ function DashboardEstablishment() {
   });
 
   async function onSubmit(data) {
-    setSubmitting(true);
-    console.log(data);
-    const image_url = data.images;
-    console.log(data.facilities);
-
     //create a string of facilities because array is not accepted
     let facilities = "";
     data.facilities.forEach((facility) => {
@@ -83,17 +76,13 @@ function DashboardEstablishment() {
       },
     };
 
-    // console.log(formatted_data);
     try {
-      const response = await http.post(url, formatted_data);
-      console.log("response", response.data);
+      await http.post(url, formatted_data);
       reset();
       setSuccessful(true);
     } catch (error) {
       console.log("error", error);
       setServerError(error.toString());
-    } finally {
-      setSubmitting(false);
     }
   }
 

@@ -52,6 +52,10 @@
   flex-direction: column;
 }
 
+.trip_form_inputs {
+  border: none;
+}
+
 .trip_form_input label {
   margin: 0.5rem 0;
 }
@@ -60,7 +64,6 @@
 select {
   padding: 0.5rem;
   border-radius: 5px;
-  border: none;
   position: relative;
 }
 

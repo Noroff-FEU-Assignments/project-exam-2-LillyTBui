@@ -3,10 +3,6 @@
   flex-direction: column;
 }
 
-.name {
-  margin-left: 3rem;
-}
-
 span {
   margin-right: 0.5rem;
 }
@@ -20,5 +16,9 @@ span {
 @media (min-width: 576px) {
   .accordion_header {
     flex-direction: row;
+  }
+
+  .name {
+    margin-left: 3rem;
   }
 }
