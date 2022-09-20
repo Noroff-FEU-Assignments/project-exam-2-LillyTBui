@@ -25,7 +25,7 @@ const schema = yup.object().shape({
 
 function Login() {
   const [loginError, setLoginError] = useState(null);
-  const [setAuth] = useContext(AuthContext);
+  const [auth, setAuth] = useContext(AuthContext);
 
   let navigate = useNavigate();
 

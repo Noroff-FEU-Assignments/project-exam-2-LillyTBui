@@ -1,0 +1,23 @@
+.dashboardEnquiries_div {
+  padding: 2rem 0;
+}
+
+.dashboardEnquiries_div h3 {
+  margin-bottom: 1rem;
+}
+
+.table_div {
+  margin-bottom: 0.5rem;
+  background-color: var(--clr-primary-light-blue);
+  padding: 1rem 1.25rem;
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.table_heading {
+  color: white;
+  letter-spacing: 0.3px;
+  font-weight: bold;
+  margin: 0;
+}

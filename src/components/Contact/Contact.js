@@ -9,9 +9,15 @@ import Button from "../UI/Button";
 import { Alert } from "react-bootstrap";
 import ContactAccordion from "./ContactAccordion";
 
-const url =
-  API_URL +
-  `wc/v3/products?consumer_key=${process.env.REACT_APP_WC_CONSUMER_KEY}&consumer_secret=${process.env.REACT_APP_WC_CONSUMER_SECRET}&Content-Type:application/json`;
+//hard coded token to be able to make post requests
+const token =
+  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvc3VubnlkYXkub25lXC9wcm9qZWN0LWV4YW0tMi13b3JkcHJlc3MiLCJpYXQiOjE2NjM2NzQwNTMsIm5iZiI6MTY2MzY3NDA1MywiZXhwIjoxNjY0Mjc4ODUzLCJkYXRhIjp7InVzZXIiOnsiaWQiOiIzIn19fQ.YiG5uQQCNtJ4NcHRKVWRFQVyerykw_PdMqbqKIykvwg";
+
+const options = {
+  headers: { Authorization: `Bearer ${token}` },
+};
+
+const url = API_URL + "wp/v2/messages";
 
 const schema = yup.object().shape({
   fullName: yup.string().required("Please enter your full name").min(5),
@@ -44,23 +50,23 @@ function Contact() {
 
   async function onSubmit(data) {
     const formatted_data = {
-      name: data.subject,
-      description: data.message,
-      short_description: data.email,
-      categories: [
-        {
-          id: 38,
-        },
-      ],
+      status: "publish",
+      title: data.subject,
+      acf: {
+        fullName: data.fullName,
+        email: data.email,
+        subject: data.subject,
+        message: data.message,
+      },
     };
 
     try {
-      const response = await axios.post(url, formatted_data);
+      const response = await axios.post(url, formatted_data, options);
       console.log("response", response.data);
       reset();
       setSuccessful(true);
     } catch (error) {
-      console.log("error", error);
+      console.log("error", error.message);
       setServerError(error.toString());
     }
   }
@@ -90,7 +96,10 @@ function Contact() {
       <form
         onSubmit={handleSubmit(onSubmit)}
         className={style.form}
-        onClick={() => setSuccessful(false)}
+        onClick={() => {
+          setSuccessful(false);
+          setServerError(false);
+        }}
       >
         <label htmlFor="fullName">Full name</label>
         <input {...register("fullName")} id="fullName" />

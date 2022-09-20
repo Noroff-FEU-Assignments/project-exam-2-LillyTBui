@@ -132,7 +132,7 @@ function HotelDetail() {
             Reserve
           </button>
         </div>
-        <Modal price={hotel.acf.price} />
+        <Modal name={hotel.title.rendered} price={hotel.acf.price} />
       </Container>
     </ModalContext.Provider>
   );

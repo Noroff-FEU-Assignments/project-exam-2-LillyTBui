@@ -3,6 +3,10 @@
   flex-direction: column;
 }
 
+.fullName {
+  font-size: 1.2em;
+}
+
 .subject {
   margin-top: 0.5rem;
 }

@@ -1,33 +1,41 @@
+import PropTypes from "prop-types";
 import Accordion from "react-bootstrap/Accordion";
-import RemoveTags from "../UI/RemoveTags";
 import style from "./DashbordMessage.module.css";
+
+/**
+ * Generates a message item
+ * @param {object} message object to extract information from
+ * @returns message as an accordion item
+ */
 
 function DashbordMessage({ message }) {
   return (
     <Accordion.Item eventKey={message.id}>
       <Accordion.Header>
         <div className={style.accordion_header}>
-          <p>{message.date_created.split("T")[0]}</p>
+          <p>{message.date.split("T")[0]}</p>
           <p className={style.subject}>
-            <span className={style.span_header}>Subject: </span>
-            {message.name}
+            <span className={style.span_header}>Subject:</span>
+            {message.acf.subject}
           </p>
         </div>
       </Accordion.Header>
       <Accordion.Body>
-        <p>
-          <span>From:</span> {message.attributes[0].options[0]}
+        <p className={style.fullName}>
+          <span>{message.acf.fullName}</span>
         </p>
-        <p>
-          <span>Email:</span> {message.attributes[1].options[0]}
-        </p>
+        <p>From: {message.acf.email}</p>
         <div className={style.message}>
-          <h5 className="bold">{message.name}</h5>
-          <RemoveTags>{message.description}</RemoveTags>
+          <h5 className="bold">{message.acf.subject}</h5>
+          <p>{message.acf.message}</p>
         </div>
       </Accordion.Body>
     </Accordion.Item>
   );
 }
+
+DashbordMessage.propTypes = {
+  message: PropTypes.object.isRequired,
+};
 
 export default DashbordMessage;

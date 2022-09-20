@@ -1,38 +1,137 @@
-import React from "react";
+import { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-
+import { API_URL } from "../../constants/api";
+import Context from "../../Context/ModelFormContext";
+import axios from "axios";
 import style from "./ModalForm.module.css";
+import ModalPrice from "./ModalPrice";
+
+//hard coded token to be able to make post requests
+const token =
+  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvc3VubnlkYXkub25lXC9wcm9qZWN0LWV4YW0tMi13b3JkcHJlc3MiLCJpYXQiOjE2NjM2NzQwNTMsIm5iZiI6MTY2MzY3NDA1MywiZXhwIjoxNjY0Mjc4ODUzLCJkYXRhIjp7InVzZXIiOnsiaWQiOiIzIn19fQ.YiG5uQQCNtJ4NcHRKVWRFQVyerykw_PdMqbqKIykvwg";
+
+const options = {
+  headers: { Authorization: `Bearer ${token}` },
+};
+
+const url = API_URL + `wp/v2/enquiries`;
 
 const schema = yup.object().shape({
-  firstName: yup.string().required("Please enter your first name").min(5),
-  lastName: yup.string().required("Please enter your last name").min(5),
+  firstName: yup.string().required("Please enter your first name").min(2),
+  lastName: yup.string().required("Please enter your last name").min(2),
   email: yup.string().email().required("Please enter your email"),
   number: yup.number().required("Please enter your phone number").min(8),
-  message: yup
-    .string()
-    .required("Needs to be at least 10 character long")
-    .min(10),
 });
 
-function ModalForm() {
+function ModalForm({ name, price }) {
+  const [totalPrice, setTotalPrice] = useContext(Context);
+
+  const [serverError, setServerError] = useState(null);
+  const [successful, setSuccessful] = useState(false);
+
+  const [dateStart, setDateStart] = useState("");
+  const [dateEnd, setDateEnd] = useState("");
+  const [dateError, setDateError] = useState(false);
+
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
   });
 
-  function onSend(data) {
-    console.log(data);
+  const changeDateStart = (event) => {
+    setDateStart(event.target.value);
+  };
+
+  const changeDateEnd = (event) => {
+    setDateEnd(event.target.value);
+  };
+
+  async function onSubmit(data) {
+    if (dateStart === "" || dateEnd === "") {
+      setDateError(true);
+    } else {
+      setDateError(false);
+
+      const formatted_data = {
+        status: "publish",
+        title: name,
+        acf: {
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+          number: data.number,
+          startDate: dateStart,
+          endDate: dateEnd,
+          travelers: data.travelers,
+          price: totalPrice,
+        },
+      };
+
+      console.log(formatted_data);
+      try {
+        const response = await axios.post(url, formatted_data, options);
+        console.log("response", response.data);
+        reset();
+        setSuccessful(true);
+      } catch (error) {
+        console.log("error", error.message);
+        setServerError(error.toString());
+      }
+    }
   }
 
   return (
     <>
+      <div className={style.trip_form}>
+        <h4 className="uppercase">Your trip</h4>
+        <div className={style.trip_form_input}>
+          <label htmlFor="startDate">Check-in *</label>
+          <input
+            type="date"
+            id="startDate"
+            name="trip-start"
+            max={dateEnd}
+            onChange={changeDateStart}
+          />
+          {dateError && (
+            <span className={style.error}>Please choose your trip date</span>
+          )}
+        </div>
+        <div className={style.trip_form_input}>
+          <label htmlFor="endDate">Check-out *</label>
+          <input
+            type="date"
+            id="endDate"
+            name="trip-start"
+            min={dateStart}
+            max="2023-12-31"
+            onChange={changeDateEnd}
+          />
+          {dateError && (
+            <span className={style.error}>Please choose your trip date</span>
+          )}
+        </div>
+        <div className={style.trip_form_input}>
+          <label htmlFor="travelers">Select number of travelers *</label>
+          <select {...register("travelers")} name="travelers" id="travelers">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+          </select>
+        </div>
+      </div>
+      <ModalPrice startDate={dateStart} endDate={dateEnd} price={price} />
       <div className={style.modal_form}>
-        <form onSubmit={handleSubmit(onSend)} className={style.form}>
+        <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
           <h4 className="uppercase">Contact details</h4>
           <label htmlFor="firstName">First name</label>
           <input {...register("firstName")} id="firstName" />
@@ -52,21 +151,17 @@ function ModalForm() {
             <span className={style.error}>{errors.email.message}</span>
           )}
 
-          <label htmlFor="number">Subject</label>
+          <label htmlFor="number">Phone number</label>
           <input {...register("number", { required: true })} id="number" />
           {errors.number && (
             <span className={style.error}>{errors.number.message}</span>
           )}
-
-          <label htmlFor="message">Message</label>
-          <textarea
-            {...register("message", { required: true })}
-            id="message"
-            rows="5"
-          />
-          {errors.message && (
-            <span className={style.error}>{errors.message.message}</span>
+          {serverError && (
+            <span className={style.error}>
+              Something went wrong. Please try again.
+            </span>
           )}
+          <button className={style.send_btn}>Send</button>
         </form>
       </div>
     </>

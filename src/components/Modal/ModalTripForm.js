@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useState } from "react";
 import style from "./ModalTripForm.module.css";
 
@@ -35,7 +34,6 @@ function ModalTripForm({ price }) {
       const difference_in_time = date2.getTime() - date1.getTime();
       total_nights = difference_in_time / (1000 * 3600 * 24);
 
-      console.log("total_n", total_nights);
       if (total_nights > 1) {
         night = "nights";
       }

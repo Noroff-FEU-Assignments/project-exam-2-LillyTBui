@@ -1,0 +1,14 @@
+.price_details_div {
+  margin-bottom: 2rem;
+}
+
+.price_details {
+  margin-top: 0.5rem;
+  border-bottom: 1px solid gray;
+  padding-bottom: 1rem;
+}
+.price_details_total {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+}

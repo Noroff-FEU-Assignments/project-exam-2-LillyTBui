@@ -1,22 +1,15 @@
-import style from "./DashboardMessages.module.css";
 import { useState, useEffect } from "react";
 import { API_URL } from "../../constants/api";
 import axios from "axios";
+import style from "./DashboardEnquiries.module.css";
 import Accordion from "react-bootstrap/Accordion";
 import Spinner from "react-bootstrap/Spinner";
 import ErrorMessage from "../UI/ErrorMessage";
-import DashbordMessage from "./DashbordMessage";
 
-const url = API_URL + `wp/v2/messages`;
+const url = API_URL + `wp/v2/enquiries`;
 
-/**
- * Generates a list of contact messages
- * Retrieves all messages from API
- * @returns a list of messages from customers
- */
-
-function DashboardMessages() {
-  const [messages, setMessages] = useState([]);
+function DashboardEnquiries() {
+  const [enquiries, setEnquiries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -25,7 +18,7 @@ function DashboardMessages() {
       try {
         const response = await axios.get(url);
         console.log(response.data);
-        setMessages(response.data);
+        setEnquiries(response.data);
       } catch (error) {
         setError(error.toString());
       } finally {
@@ -48,19 +41,19 @@ function DashboardMessages() {
   }
 
   return (
-    <div className={style.dashboardMessages_div}>
-      <h3>Messages</h3>
+    <div className={style.dashboardEnquiries_div}>
+      <h3>Enquiries</h3>
       <div className={style.table_div}>
         <h5 className={style.table_heading}>Date</h5>
       </div>
-      {messages.length == 0 && <p>No messages yet</p>}
-      <Accordion>
+      {enquiries.length == 0 && <p>No enquiries yet</p>}
+      {/* <Accordion>
         {messages.map((message) => {
           return <DashbordMessage key={message.id} message={message} />;
         })}
-      </Accordion>
+      </Accordion> */}
     </div>
   );
 }
 
-export default DashboardMessages;
+export default DashboardEnquiries;
