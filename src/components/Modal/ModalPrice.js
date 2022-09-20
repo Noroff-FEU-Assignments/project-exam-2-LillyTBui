@@ -4,7 +4,7 @@ import Context from "../../Context/ModelFormContext";
 
 /**
  * Calculates and displays price details
- * @param {*} props takes in startDate, endDate and price
+ * @param {object} object takes in startDate(string), endDate(string) and price(number)
  * @returns price details
  */
 

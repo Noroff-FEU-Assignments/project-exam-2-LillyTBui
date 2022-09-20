@@ -6,6 +6,12 @@ import ModalForm from "./ModalForm";
 import style from "./Modal.module.css";
 import { ModalFormProvider } from "../../Context/ModelFormContext";
 
+/**
+ * Generates a modal component as an enquiry form
+ * @param {object} object has name (string) and price (number) values
+ * @returns modal enquiry form
+ */
+
 function ModalElement({ name, price }) {
   const { show, setShow } = useContext(ModalContext);
   const handleClose = () => setShow(false);

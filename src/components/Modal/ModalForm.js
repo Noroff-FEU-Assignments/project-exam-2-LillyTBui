@@ -26,6 +26,12 @@ const schema = yup.object().shape({
   number: yup.number().required("Please enter your phone number").min(8),
 });
 
+/**
+ * Generates an enquiry form
+ * @param {object} object has name (string) and price (number) values
+ * @returns enquiry form
+ */
+
 function ModalForm({ name, price }) {
   const [totalPrice] = useContext(Context);
 
