@@ -27,7 +27,7 @@ const schema = yup.object().shape({
 });
 
 function ModalForm({ name, price }) {
-  const [totalPrice, setTotalPrice] = useContext(Context);
+  const [totalPrice] = useContext(Context);
 
   const [serverError, setServerError] = useState(null);
   const [dateStart, setDateStart] = useState("");
@@ -39,7 +39,6 @@ function ModalForm({ name, price }) {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),

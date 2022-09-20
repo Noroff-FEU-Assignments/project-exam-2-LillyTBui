@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import style from "./ModalPrice.module.css";
 import Context from "../../Context/ModelFormContext";
 
@@ -8,20 +8,20 @@ import Context from "../../Context/ModelFormContext";
  * @returns price details
  */
 
-function ModalPrice(props) {
-  const [totalPrice, setTotalPrice] = useContext(Context);
+function ModalPrice({ startDate, endDate, price }) {
+  const [, setTotalPrice] = useContext(Context);
 
-  let price_per_night = props.price;
+  let price_per_night = price;
   let total_price = 0;
   let total_nights = 0;
   let night = "night";
 
   //calculate price and nights
-  if (props.startDate !== "") {
+  if (startDate !== "") {
     //calculate nights
-    if (props.endDate !== "") {
-      let date1 = new Date(props.startDate);
-      let date2 = new Date(props.endDate);
+    if (endDate !== "") {
+      let date1 = new Date(startDate);
+      let date2 = new Date(endDate);
 
       const difference_in_time = date2.getTime() - date1.getTime();
       total_nights = difference_in_time / (1000 * 3600 * 24);
@@ -31,9 +31,15 @@ function ModalPrice(props) {
       }
       //calculate price
       total_price = price_per_night * total_nights;
-      setTotalPrice(total_price);
     }
   }
+
+  useEffect(
+    function () {
+      setTotalPrice(total_price);
+    },
+    [total_price, setTotalPrice]
+  );
 
   return (
     <div className={style.price_details_div}>
