@@ -7,6 +7,7 @@ import Context from "../../Context/ModelFormContext";
 import axios from "axios";
 import style from "./ModalForm.module.css";
 import ModalPrice from "./ModalPrice";
+import { useNavigate } from "react-router-dom";
 
 //hard coded token to be able to make post requests
 const token =
@@ -29,11 +30,11 @@ function ModalForm({ name, price }) {
   const [totalPrice, setTotalPrice] = useContext(Context);
 
   const [serverError, setServerError] = useState(null);
-  const [successful, setSuccessful] = useState(false);
-
   const [dateStart, setDateStart] = useState("");
   const [dateEnd, setDateEnd] = useState("");
   const [dateError, setDateError] = useState(false);
+
+  let navigate = useNavigate();
 
   const {
     register,
@@ -77,8 +78,7 @@ function ModalForm({ name, price }) {
       try {
         const response = await axios.post(url, formatted_data, options);
         console.log("response", response.data);
-        reset();
-        setSuccessful(true);
+        navigate("/receivedEnquiry");
       } catch (error) {
         console.log("error", error.message);
         setServerError(error.toString());
