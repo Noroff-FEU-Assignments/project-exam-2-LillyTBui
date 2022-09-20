@@ -5,8 +5,14 @@ import style from "./DashboardEnquiries.module.css";
 import Accordion from "react-bootstrap/Accordion";
 import Spinner from "react-bootstrap/Spinner";
 import ErrorMessage from "../UI/ErrorMessage";
+import DashboardEnquiry from "./DashboardEnquiry";
 
 const url = API_URL + `wp/v2/enquiries`;
+
+/**
+ * Generates a list of enquiries
+ * @returns list of enquiries if there are any
+ */
 
 function DashboardEnquiries() {
   const [enquiries, setEnquiries] = useState([]);
@@ -44,14 +50,14 @@ function DashboardEnquiries() {
     <div className={style.dashboardEnquiries_div}>
       <h3>Enquiries</h3>
       <div className={style.table_div}>
-        <h5 className={style.table_heading}>Date</h5>
+        <h5 className={style.table_heading}>Hotel</h5>
       </div>
       {enquiries.length == 0 && <p>No enquiries yet</p>}
-      {/* <Accordion>
-        {messages.map((message) => {
-          return <DashbordMessage key={message.id} message={message} />;
+      <Accordion>
+        {enquiries.map((enquiry) => {
+          return <DashboardEnquiry key={enquiry.id} enquiry={enquiry} />;
         })}
-      </Accordion> */}
+      </Accordion>
     </div>
   );
 }
