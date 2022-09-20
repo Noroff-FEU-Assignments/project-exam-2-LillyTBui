@@ -60,7 +60,8 @@
 select {
   padding: 0.5rem;
   border-radius: 5px;
-  border: 1px solid gray;
+  border: none;
+  position: relative;
 }
 
 .price_details_div {
@@ -77,4 +78,17 @@ select {
   margin-top: 1rem;
   display: flex;
   justify-content: space-between;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background: transparent;
+  bottom: 0;
+  color: transparent;
+  cursor: pointer;
+  height: auto;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: auto;
 }
