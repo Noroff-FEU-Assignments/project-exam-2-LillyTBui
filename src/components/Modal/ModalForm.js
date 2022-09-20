@@ -78,7 +78,7 @@ function ModalForm({ name, price }) {
       try {
         const response = await axios.post(url, formatted_data, options);
         console.log("response", response.data);
-        navigate("/receivedEnquiry");
+        navigate("/confirmed");
       } catch (error) {
         console.log("error", error.message);
         setServerError(error.toString());
