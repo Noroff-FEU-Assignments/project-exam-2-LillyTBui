@@ -82,6 +82,18 @@ span {
   font-weight: bold;
 }
 
+/* facilities */
+.facilities_ul {
+  list-style: none;
+  padding: 0;
+}
+
+.facilities_icon {
+  width: 20px;
+  margin-right: 1rem;
+}
+
+/* reserve button */
 .reserve_btn {
   display: flex;
   justify-content: center;

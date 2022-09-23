@@ -6,6 +6,11 @@ import Img from "../../assets/images/homepage.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
+/**
+ * Generates a search bar
+ * @returns search bar and result list
+ */
+
 function HomeSearch() {
   const [value, setValue] = useState("");
 

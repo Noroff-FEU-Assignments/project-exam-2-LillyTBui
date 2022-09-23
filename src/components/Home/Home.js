@@ -5,6 +5,11 @@ import Tabs from "react-bootstrap/Tabs";
 import HotelsList from "../Hotels/HotelsList";
 import HomeSearch from "./HomeSearch";
 
+/**
+ * Generates homepage
+ * @returns homepage with list of hotels
+ */
+
 function Home() {
   return (
     <>
