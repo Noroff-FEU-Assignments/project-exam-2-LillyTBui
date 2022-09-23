@@ -10,19 +10,10 @@ import Tabs from "react-bootstrap/Tabs";
 import ErrorMessage from "../UI/ErrorMessage";
 import ModalContext from "../../Context/Modal-context";
 import Modal from "../Modal/Modal";
+import HotelFacilities from "./HotelFacilities";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faAngleLeft,
-  faMugSaucer,
-  faUtensils,
-  faWifi,
-  faBanSmoking,
-  faSquareParking,
-  faDog,
-  faStar,
-  faTemperatureArrowDown,
-} from "@fortawesome/free-solid-svg-icons";
+import { faAngleLeft, faStar } from "@fortawesome/free-solid-svg-icons";
 import style from "./HotelDetail.module.css";
 
 /**
@@ -79,35 +70,6 @@ function HotelDetail() {
     return <ErrorMessage>{error}</ErrorMessage>;
   }
 
-  //get each facility from string
-  const facilities_split = hotel.acf.facilities.trim().split(",");
-  const facilities = facilities_split.filter((facility) => {
-    return facility.length !== 0;
-  });
-
-  //add icon to corresponding facility
-  const facilities_list = facilities.map((facility) => {
-    let icon;
-    if (facility === "Air condition") {
-      icon = faTemperatureArrowDown;
-    } else if (facility === "Breakfast") {
-      icon = faMugSaucer;
-    } else if (facility === "No smoking") {
-      icon = faBanSmoking;
-    } else if (facility === "Parking") {
-      icon = faSquareParking;
-    } else if (facility === "Pets allowed") {
-      icon = faDog;
-    } else if (facility === "Restaurant") {
-      icon = faUtensils;
-    } else if (facility === "Wi-fi") {
-      icon = faWifi;
-    }
-    return { facility, icon };
-  });
-
-  console.log(facilities_list);
-
   return (
     <ModalContext.Provider value={value}>
       <Container>
@@ -152,19 +114,7 @@ function HotelDetail() {
               <Tab eventKey="facilities" title="Facilities">
                 <div className={style.tab_content}>
                   <h3 className={style.tab_content_header}>Facilities</h3>
-                  <ul className={style.facilities_ul}>
-                    {facilities_list.map((facility) => {
-                      return (
-                        <li key={facility.facility}>
-                          <FontAwesomeIcon
-                            icon={facility.icon}
-                            className={style.facilities_icon}
-                          />
-                          {facility.facility}
-                        </li>
-                      );
-                    })}
-                  </ul>
+                  <HotelFacilities facilities={hotel.acf.facilities} />
                 </div>
               </Tab>
             </Tabs>

@@ -1,0 +1,9 @@
+.facilities_ul {
+  list-style: none;
+  padding: 0;
+}
+
+.facilities_icon {
+  width: 20px;
+  margin-right: 1rem;
+}

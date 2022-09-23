@@ -82,17 +82,6 @@ span {
   font-weight: bold;
 }
 
-/* facilities */
-.facilities_ul {
-  list-style: none;
-  padding: 0;
-}
-
-.facilities_icon {
-  width: 20px;
-  margin-right: 1rem;
-}
-
 /* reserve button */
 .reserve_btn {
   display: flex;
@@ -132,23 +121,4 @@ span {
   .reserve_btn {
     min-width: 150px;
   }
-}
-
-/* Modal */
-.modal_footer {
-  display: flex;
-  justify-content: center;
-}
-
-.cancel_btn {
-  background-color: var(--clr-secondary-dark);
-  border-color: var(--clr-secondary-dark);
-  border-radius: 10px;
-  padding: 0.5rem 1rem;
-}
-
-.cancel_btn:hover {
-  color: var(--clr-secondary-dark);
-  border-color: var(--clr-secondary-dark);
-  background-color: white;
 }
