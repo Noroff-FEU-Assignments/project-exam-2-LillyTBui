@@ -3,6 +3,9 @@ import { useState } from "react";
 import HotelSearch from "../Hotels/HotelSearch";
 import Img from "../../assets/images/homepage.jpg";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+
 function HomeSearch() {
   const [value, setValue] = useState("");
 
@@ -24,8 +27,12 @@ function HomeSearch() {
             onChange={onChange}
             value={value}
           />
+          {value && <HotelSearch input={value} />}
+          <FontAwesomeIcon
+            icon={faMagnifyingGlass}
+            className={style.search_icon}
+          />
         </div>
-        {value ? <HotelSearch input={value} /> : <p></p>}
       </div>
     </div>
   );

@@ -12,7 +12,6 @@
   border-radius: 10px;
   width: 100%;
   max-width: 400px;
-  position: relative;
 }
 
 .search_title {
@@ -20,11 +19,27 @@
   margin: 1rem 0;
 }
 
-.search {
-  border: 1px solid gray;
-  border-radius: 10px;
-  padding: 0.5rem 1rem;
+.search_inner {
+  margin-top: 1rem;
   width: 100%;
+  border-radius: 5px;
+  position: relative;
+  box-shadow: 0px 1px 4px 2px #8080801c;
+}
+
+.search {
+  padding: 0.5rem 1rem;
+  height: 55px;
+  width: 100%;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+}
+
+.search_icon {
+  position: absolute;
+  top: 20px;
+  right: 10px;
 }
 
 @media (min-width: 576px) {
@@ -40,10 +55,5 @@
 
   .search_title {
     margin-top: 0;
-  }
-
-  .search {
-    margin-right: 0.5rem;
-    margin-bottom: 0;
   }
 }

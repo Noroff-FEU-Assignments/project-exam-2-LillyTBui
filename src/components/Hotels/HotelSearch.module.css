@@ -1,22 +1,38 @@
 .result_div {
-  margin: 0.5rem 0rem 0rem 0rem;
-  max-height: 60px;
-  overflow: hidden;
+  border-top: 1px solid #8080801c;
+  max-height: 100px;
   overflow-y: auto;
 }
 
 .result_ul {
-  list-style: none;
   padding: 0;
   margin-bottom: 0;
 }
 
-.result_ul a li {
-  padding-left: 1rem;
+.result_div li {
+  list-style: none;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  border-radius: 3px;
+}
+
+.result_div li:hover {
+  color: black;
   background-color: rgba(211, 211, 211, 0.175);
 }
 
-.result_ul a:hover {
-  color: blue;
-  text-decoration: underline;
+.no_result {
+  padding: 0.5rem 1rem;
+}
+
+/* hotel result item */
+.hotel_div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.hotel_img {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
 }

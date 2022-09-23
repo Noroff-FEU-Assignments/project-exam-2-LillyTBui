@@ -53,12 +53,23 @@ function HotelSearch({ input }) {
   return (
     <div className={style.result_div}>
       <ul className={style.result_ul}>
-        {filtered_data.length === 0 && <em>No results found</em>}
+        {filtered_data.length === 0 && (
+          <p className={style.no_result}>No results matching '{input}'</p>
+        )}
         {filtered_data.length !== 0 &&
           filtered_data.map((hotel) => {
             return (
               <Link to={`detail/${hotel.id}`} key={hotel.id}>
-                <li key={hotel.id}>{hotel.title.rendered}</li>
+                <li key={hotel.id}>
+                  <div className={style.hotel_div}>
+                    <p>{hotel.title.rendered}</p>
+                    <img
+                      src={hotel.acf.image_url}
+                      alt={hotel.title.rendered}
+                      className={style.hotel_img}
+                    />
+                  </div>
+                </li>
               </Link>
             );
           })}
