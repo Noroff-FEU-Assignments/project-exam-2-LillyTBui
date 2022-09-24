@@ -73,7 +73,7 @@ function HotelDetail() {
   return (
     <ModalContext.Provider value={value}>
       <Container>
-        <Link to="/">
+        <Link to="/accommodations">
           <p className={style.breadcrumb}>
             {" "}
             <FontAwesomeIcon icon={faAngleLeft} className={style.icon} />

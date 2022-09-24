@@ -1,0 +1,19 @@
+.accommodation_list_div {
+  max-width: 600px;
+}
+
+.sort_by {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.sort_by p {
+  margin-right: 1rem;
+}
+
+.sort_by_select {
+  min-width: 250px;
+  font-size: 0.9rem;
+}

@@ -41,6 +41,9 @@ function NavbarComponent() {
               <Nav className="ms-auto">
                 {auth ? (
                   <>
+                    <NavLink to="/accommodations" className={style.link}>
+                      Accommodations
+                    </NavLink>
                     <NavLink to="/contact" className={style.link}>
                       Contact
                     </NavLink>
@@ -61,15 +64,18 @@ function NavbarComponent() {
                   </>
                 ) : (
                   <>
+                    <NavLink to="/accommodations" className={style.link}>
+                      Accommodations
+                    </NavLink>
+                    <NavLink to="/contact" className={style.link}>
+                      Contact
+                    </NavLink>
                     <NavLink to="/login" className={style.link}>
                       Log in
                       <FontAwesomeIcon
                         icon={faCircleUser}
                         className={style.icon}
                       />
-                    </NavLink>
-                    <NavLink to="/contact" className={style.link}>
-                      Contact
                     </NavLink>
                   </>
                 )}
