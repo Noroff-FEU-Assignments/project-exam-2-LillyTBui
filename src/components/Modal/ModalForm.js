@@ -82,7 +82,6 @@ function ModalForm({ name, price }) {
         },
       };
 
-      console.log(formatted_data);
       try {
         const response = await axios.post(url, formatted_data, options);
         console.log("response", response.data);

@@ -24,7 +24,6 @@ function DashboardMessages() {
     async function fetchData() {
       try {
         const response = await axios.get(url);
-        console.log(response.data);
         setMessages(response.data);
       } catch (error) {
         setError(error.toString());
@@ -53,7 +52,7 @@ function DashboardMessages() {
       <div className={style.table_div}>
         <h5 className={style.table_heading}>Date</h5>
       </div>
-      {messages.length == 0 && <p>No messages yet</p>}
+      {messages.length === 0 && <p>No messages yet</p>}
       <Accordion>
         {messages.map((message) => {
           return <DashbordMessage key={message.id} message={message} />;

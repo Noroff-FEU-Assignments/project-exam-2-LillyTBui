@@ -10,10 +10,11 @@ import style from "./Dashboard.module.css";
  * @returns contact messages, enquiries and create an establishment form
  */
 
-function Dashboard() {
+function Dashboard({ user }) {
   return (
     <div className={style.dashboard}>
       <Container>
+        <h1 className={style.welcome}>Welcome back, {user}!</h1>
         <DashboardMessages />
         <DashboardEnquiries />
       </Container>

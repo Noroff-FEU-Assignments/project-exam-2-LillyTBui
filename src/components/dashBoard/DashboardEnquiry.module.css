@@ -7,6 +7,14 @@ span {
   margin-right: 0.5rem;
 }
 
+.date {
+  width: 100px;
+}
+
+.bookingReference {
+  margin-bottom: 1rem;
+}
+
 .trip_details {
   margin-top: 2rem;
   text-transform: uppercase;

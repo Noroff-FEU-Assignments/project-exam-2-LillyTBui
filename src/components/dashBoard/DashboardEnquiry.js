@@ -13,12 +13,15 @@ function DashboardEnquiry({ enquiry }) {
     <Accordion.Item eventKey={enquiry.id}>
       <Accordion.Header>
         <div className={style.accordion_header}>
-          <p>{enquiry.date.split("T")[0]}</p>
+          <p className={style.date}>{enquiry.date.split("T")[0]}</p>
           <p className={style.name}>{enquiry.title.rendered}</p>
         </div>
       </Accordion.Header>
       <Accordion.Body>
         <div>
+          <p className={style.bookingReference}>
+            <span>Booking reference:</span> {enquiry.acf.bookingReference}
+          </p>
           <p>
             <span>First Name:</span>
             {enquiry.acf.firstName}

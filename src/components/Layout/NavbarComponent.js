@@ -20,6 +20,7 @@ function NavbarComponent() {
 
   function logout() {
     setAuth(null);
+    localStorage.setItem("user", null);
     navigate("/");
   }
 

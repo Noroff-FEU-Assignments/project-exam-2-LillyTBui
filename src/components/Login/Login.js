@@ -23,9 +23,9 @@ const schema = yup.object().shape({
  * @returns login form
  */
 
-function Login() {
+function Login({ setUser }) {
   const [loginError, setLoginError] = useState(null);
-  const [auth, setAuth] = useContext(AuthContext);
+  const [, setAuth] = useContext(AuthContext);
 
   let navigate = useNavigate();
 
@@ -43,6 +43,7 @@ function Login() {
     try {
       const response = await axios.post(url, data);
       setAuth(response.data);
+      setUser(data.username);
       navigate("/dashboard");
     } catch (error) {
       console.log("error", error);

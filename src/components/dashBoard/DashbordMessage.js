@@ -13,7 +13,7 @@ function DashbordMessage({ message }) {
     <Accordion.Item eventKey={message.id}>
       <Accordion.Header>
         <div className={style.accordion_header}>
-          <p>{message.date.split("T")[0]}</p>
+          <p className={style.date}>{message.date.split("T")[0]}</p>
           <p className={style.subject}>
             <span className={style.span_header}>Subject:</span>
             {message.acf.subject}

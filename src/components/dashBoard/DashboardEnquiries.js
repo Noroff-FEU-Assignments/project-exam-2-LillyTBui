@@ -23,7 +23,6 @@ function DashboardEnquiries() {
     async function fetchData() {
       try {
         const response = await axios.get(url);
-        console.log(response.data);
         setEnquiries(response.data);
       } catch (error) {
         setError(error.toString());

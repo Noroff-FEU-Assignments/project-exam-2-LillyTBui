@@ -7,6 +7,10 @@
   font-size: 1.2em;
 }
 
+.date {
+  width: 100px;
+}
+
 .subject {
   margin-top: 0.5rem;
 }
