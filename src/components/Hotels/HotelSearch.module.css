@@ -29,10 +29,12 @@
 .hotel_div {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .hotel_img {
-  height: 30px;
-  width: 30px;
+  height: 40px;
+  width: 40px;
   border-radius: 50%;
+  object-fit: fill;
 }
