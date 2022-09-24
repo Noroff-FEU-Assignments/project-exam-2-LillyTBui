@@ -131,6 +131,10 @@ h2 {
   font-size: var(--fs-600);
 }
 
+h3 {
+  font-size: var(--fs-500);
+}
+
 /* Utility classes */
 .ff-sans-title {
   font-family: var(--ff-sans-title);

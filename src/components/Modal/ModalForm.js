@@ -8,6 +8,7 @@ import axios from "axios";
 import style from "./ModalForm.module.css";
 import ModalPrice from "./ModalPrice";
 import { useNavigate } from "react-router-dom";
+import EnquiryReferenceNumber from "../Enquiry/EnquiryReferenceNumber";
 
 //hard coded token to be able to make post requests
 const token =
@@ -64,6 +65,7 @@ function ModalForm({ name, price }) {
     } else {
       setDateError(false);
 
+      const referenceNumber = EnquiryReferenceNumber();
       const formatted_data = {
         status: "publish",
         title: name,
@@ -76,13 +78,15 @@ function ModalForm({ name, price }) {
           endDate: dateEnd,
           travelers: data.travelers,
           price: totalPrice,
+          bookingReference: referenceNumber,
         },
       };
 
+      console.log(formatted_data);
       try {
         const response = await axios.post(url, formatted_data, options);
         console.log("response", response.data);
-        navigate("/confirmed");
+        navigate("/received", { state: { enquiry: response.data } });
       } catch (error) {
         console.log("error", error.message);
         setServerError(error.toString());

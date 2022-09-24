@@ -7,7 +7,7 @@ import Home from "./components/Home/Home";
 import Contact from "./components/Contact/Contact";
 import HotelDetail from "./components/Hotels/HotelDetail";
 import Dashboard from "./components/dashBoard/Dashboard";
-import EnquiryConfirmed from "./components/Enquiry/EnquiryConfirmed";
+import EnquiryReceived from "./components/Enquiry/EnquiryReceived";
 import { AuthProvider } from "./Context/AuthContext";
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/detail/:id" element={<HotelDetail />} />
               <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/confirmed" element={<EnquiryConfirmed />} />
+              <Route path="/received" element={<EnquiryReceived />} />
             </Routes>
           </Router>
         </Content>
