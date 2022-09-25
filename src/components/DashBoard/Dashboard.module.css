@@ -1,0 +1,10 @@
+.dashboard {
+  background-color: var(--clr-gray);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.welcome {
+  margin-top: 2rem;
+}
