@@ -37,7 +37,7 @@ function NavbarComponent() {
               <Navbar.Brand className={style.title}>Holidaze</Navbar.Brand>
             </NavLink>
             <Navbar.Toggle aria-controls="navbar-nav" />
-            <Navbar.Collapse id="navbar-nav">
+            <Navbar.Collapse id="navbar-nav" className={style.navbar_collapse}>
               <Nav className="ms-auto">
                 {auth ? (
                   <>

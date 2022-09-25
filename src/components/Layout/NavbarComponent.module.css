@@ -2,6 +2,10 @@
   padding: 1rem 0;
 }
 
+.navbar_collapse {
+  margin-top: 0.5rem;
+}
+
 .title {
   font-size: var(--fs-700);
   letter-spacing: 1px;
@@ -11,7 +15,6 @@
 .link {
   color: var(--clr-secondary-dark);
   display: inline-block;
-  margin-top: 1rem;
 }
 
 .link::after {
