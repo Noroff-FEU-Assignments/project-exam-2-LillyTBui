@@ -1,0 +1,42 @@
+.post_grid {
+  margin: 2rem 0 5rem 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 200px;
+  gap: 1rem;
+}
+
+.post_item {
+  position: relative;
+}
+
+.post_img {
+  object-position: top;
+}
+
+.post_item:first-child {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.post_title {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  font-weight: bold;
+  letter-spacing: 0.3px;
+  font-size: 1.1em;
+}
+
+@media (min-width: 768px) {
+  .post_grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 300px;
+  }
+}
+
+@media (min-width: 992px) {
+  .post_grid {
+    gap: 1.5rem;
+  }
+}
