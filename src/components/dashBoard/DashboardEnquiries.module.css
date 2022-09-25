@@ -21,3 +21,13 @@
   font-weight: bold;
   margin: 0;
 }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filter {
+  margin-bottom: 0.5rem;
+}

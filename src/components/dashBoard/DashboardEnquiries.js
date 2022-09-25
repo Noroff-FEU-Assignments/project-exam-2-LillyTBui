@@ -6,6 +6,9 @@ import Accordion from "react-bootstrap/Accordion";
 import Spinner from "react-bootstrap/Spinner";
 import ErrorMessage from "../UI/ErrorMessage";
 import DashboardEnquiry from "./DashboardEnquiry";
+import Select from "react-select";
+import sortBy from "lodash/sortBy";
+import { options } from "../../constants/dashboardOptions";
 
 const url = API_URL + `wp/v2/enquiries`;
 
@@ -18,20 +21,39 @@ function DashboardEnquiries() {
   const [enquiries, setEnquiries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [select, setSelect] = useState("newest");
 
-  useEffect(function () {
-    async function fetchData() {
-      try {
-        const response = await axios.get(url);
-        setEnquiries(response.data);
-      } catch (error) {
-        setError(error.toString());
-      } finally {
-        setLoading(false);
-      }
+  const handleChange = (select) => {
+    if (select !== null) {
+      setSelect(select.value);
+    } else {
+      setSelect("newest");
     }
-    fetchData();
-  }, []);
+  };
+
+  useEffect(
+    function () {
+      async function fetchData() {
+        try {
+          const response = await axios.get(url);
+          let enquiries;
+          if (select === "newest") {
+            enquiries = sortBy(response.data, ["date"]);
+            enquiries.reverse();
+          } else if (select === "oldest") {
+            enquiries = sortBy(response.data, ["date"]);
+          }
+          setEnquiries(enquiries);
+        } catch (error) {
+          setError(error.toString());
+        } finally {
+          setLoading(false);
+        }
+      }
+      fetchData();
+    },
+    [select]
+  );
 
   if (loading) {
     return (
@@ -47,7 +69,16 @@ function DashboardEnquiries() {
 
   return (
     <div className={style.dashboardEnquiries_div}>
-      <h3>Enquiries</h3>
+      <div className={style.header}>
+        <h3>Enquiries</h3>
+        <Select
+          options={options}
+          onChange={handleChange}
+          defaultValue={options[0]}
+          className={style.filter}
+        />
+      </div>
+
       <div className={style.table_div}>
         <h5 className={style.table_heading}>Hotel</h5>
       </div>
