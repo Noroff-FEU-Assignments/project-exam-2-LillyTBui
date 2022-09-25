@@ -21,7 +21,6 @@ function HomeToDo() {
     async function fetchData() {
       try {
         const response = await axios.get(API);
-        console.log(response.data);
         setPosts(response.data);
       } catch (error) {
         setError(error.toString());

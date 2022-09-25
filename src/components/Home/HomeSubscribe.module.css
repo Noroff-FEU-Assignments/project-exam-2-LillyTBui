@@ -1,0 +1,50 @@
+.subscribe_div {
+  background-color: var(--clr-primary-light-blue);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 0;
+}
+
+.subscribe_div h3 {
+  font-weight: normal;
+  font-size: 1.3em;
+  color: white;
+}
+
+.subscribe_p {
+  margin-top: 0.3rem;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.subscribe_input_div {
+  display: flex;
+  flex-direction: column;
+}
+
+.subscribe_input {
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: none;
+}
+
+.subscribe_btn {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--clr-secondary-dark);
+  background-color: var(--clr-secondary-dark);
+  border-radius: 5px;
+  color: white;
+  margin-left: 0.5rem;
+  margin-top: 1rem;
+}
+
+@media (min-width: 317px) {
+  .subscribe_btn {
+    margin-top: 0;
+  }
+
+  .subscribe_input_div {
+    flex-direction: row;
+  }
+}

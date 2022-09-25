@@ -5,6 +5,7 @@ import Tabs from "react-bootstrap/Tabs";
 import HotelsList from "../Hotels/HotelsList";
 import HomeSearch from "./HomeSearch";
 import HomeToDo from "./HomeToDo";
+import HomeSubscribe from "./HomeSubscribe";
 
 /**
  * Generates homepage
@@ -39,6 +40,7 @@ function Home() {
         </Tabs>
         <HomeToDo />
       </Container>
+      <HomeSubscribe />
     </>
   );
 }
