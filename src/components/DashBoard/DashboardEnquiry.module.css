@@ -1,0 +1,32 @@
+.accordion_header {
+  display: flex;
+  flex-direction: column;
+}
+
+span {
+  margin-right: 0.5rem;
+}
+
+.date {
+  width: 100px;
+}
+
+.bookingReference {
+  margin-bottom: 1rem;
+}
+
+.trip_details {
+  margin-top: 2rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+@media (min-width: 576px) {
+  .accordion_header {
+    flex-direction: row;
+  }
+
+  .name {
+    margin-left: 3rem;
+  }
+}
