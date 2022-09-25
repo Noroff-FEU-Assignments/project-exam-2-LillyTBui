@@ -19,22 +19,25 @@ function HotelsList({ category }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(function () {
-    async function fetchData() {
-      try {
-        const response = await axios.get(API);
-        const filtered_data = response.data.filter(
-          (hotel) => hotel.acf.type === category
-        );
-        setHotels(filtered_data);
-      } catch (error) {
-        setError(error.toString());
-      } finally {
-        setLoading(false);
+  useEffect(
+    function () {
+      async function fetchData() {
+        try {
+          const response = await axios.get(API);
+          const filtered_data = response.data.filter(
+            (hotel) => hotel.acf.type === category
+          );
+          setHotels(filtered_data);
+        } catch (error) {
+          setError(error.toString());
+        } finally {
+          setLoading(false);
+        }
       }
-    }
-    fetchData();
-  }, []);
+      fetchData();
+    },
+    [category]
+  );
 
   if (loading) {
     return (
