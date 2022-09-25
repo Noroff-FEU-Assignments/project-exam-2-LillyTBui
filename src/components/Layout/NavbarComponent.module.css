@@ -21,16 +21,19 @@
   content: "";
   display: block;
   width: 0;
-  height: 2px;
+  height: 1.5rem;
+  text-align: right;
+  float: right;
+  margin-left: 0.5rem;
 }
 
 .link:hover {
-  color: var(--clr-secondary-dark);
+  color: var(--clr-primary-blue);
 }
 
 .link:hover::after {
-  background-color: var(--clr-secondary-dark);
-  width: 55px;
+  background-color: var(--clr-primary-blue);
+  width: 2px;
 }
 
 @media (min-width: 576px) {
@@ -39,8 +42,21 @@
     margin-top: initial;
   }
 
+  .link:hover {
+    color: var(--clr-secondary-dark);
+  }
+
+  .link::after {
+    width: 0;
+    height: 2px;
+    text-align: initial;
+    float: initial;
+    margin-left: initial;
+  }
+
   .link:hover::after {
     width: 100%;
+    background-color: var(--clr-secondary-dark);
   }
 }
 
