@@ -10,13 +10,19 @@ import HotelItem from "../Hotels/HotelItem";
 import Select from "react-select";
 import style from "./Accommodation.module.css";
 
-const API = API_URL + "wp/v2/hotels?per_page=5";
+const API = API_URL + "wp/v2/hotels?per_page=90";
+
+/**
+ * Generates accommodation page
+ * @returns list of all accommodations
+ */
 
 function Accommodation() {
   const [hotels, setHotels] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [select, setSelect] = useState(null);
+  const [value, setValue] = useState("");
 
   const handleChange = (select) => {
     if (select !== null) {
@@ -26,12 +32,17 @@ function Accommodation() {
     }
   };
 
+  const onChange = (event) => {
+    setValue(event.target.value);
+  };
+
   useEffect(
     function () {
       async function fetchData() {
         try {
           const response = await axios.get(API);
           let filtered_data;
+          console.log(select, value);
           if (select === null) {
             filtered_data = response.data;
           } else if (select === "ascending") {
@@ -47,6 +58,14 @@ function Accommodation() {
           } else if (select === "ratingAscending") {
             filtered_data = sortBy(response.data, ["acf.rating"]);
           }
+          if (value.length !== 0) {
+            filtered_data = hotels.filter((hotel) => {
+              return hotel.title.rendered
+                .toLowerCase()
+                .startsWith(value.toLowerCase());
+            });
+          }
+          console.log(filtered_data);
           setHotels(filtered_data);
         } catch (error) {
           setError(error.toString());
@@ -56,7 +75,7 @@ function Accommodation() {
       }
       fetchData();
     },
-    [select]
+    [select, value]
   );
 
   if (loading) {
@@ -73,7 +92,7 @@ function Accommodation() {
 
   return (
     <Container>
-      <div className={style.accommodation_list_div}>
+      <div>
         <div className={style.sort_by}>
           <p>Sort by</p>
           <Select
@@ -83,10 +102,24 @@ function Accommodation() {
             onChange={handleChange}
           />
         </div>
-        <div className={style.accommodation_list}>
-          {hotels.map((hotel) => {
-            return <HotelItem key={hotel.id} hotel={hotel} />;
-          })}
+        <div className={style.accommodation_list_div}>
+          <div>
+            <p>Hotel Search</p>
+            <input
+              id="search"
+              type="text"
+              className={style.search}
+              placeholder="Search"
+              onChange={onChange}
+              value={value}
+            />
+          </div>
+          <div className={style.accommodation_list}>
+            {hotels.length === 0 && <p>No hotels found</p>}
+            {hotels.map((hotel) => {
+              return <HotelItem key={hotel.id} hotel={hotel} />;
+            })}
+          </div>
         </div>
       </div>
     </Container>

@@ -1,12 +1,19 @@
 .accommodation_list_div {
-  max-width: 600px;
+  margin-bottom: 3rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 5rem;
+}
+
+.accommodation_list {
+  width: 70%;
 }
 
 .sort_by {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  margin-bottom: 1rem;
+  margin: 1rem 0;
 }
 
 .sort_by p {
@@ -16,4 +23,12 @@
 .sort_by_select {
   min-width: 250px;
   font-size: 0.9rem;
+}
+
+.search {
+  border-color: hsl(0, 0%, 80%);
+  border-width: 1px;
+  border-radius: 4px;
+  border-style: solid;
+  padding: 2px 8px;
 }
