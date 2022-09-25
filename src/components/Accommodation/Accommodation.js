@@ -42,7 +42,6 @@ function Accommodation() {
         try {
           const response = await axios.get(API);
           let filtered_data;
-          console.log(select, value);
           if (select === null) {
             filtered_data = response.data;
           } else if (select === "ascending") {
@@ -65,7 +64,6 @@ function Accommodation() {
                 .startsWith(value.toLowerCase());
             });
           }
-          console.log(filtered_data);
           setHotels(filtered_data);
         } catch (error) {
           setError(error.toString());
