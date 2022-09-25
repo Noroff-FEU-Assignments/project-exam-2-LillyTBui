@@ -59,7 +59,7 @@ function Accommodation() {
             filtered_data = sortBy(response.data, ["acf.rating"]);
           }
           if (value.length !== 0) {
-            filtered_data = hotels.filter((hotel) => {
+            filtered_data = filtered_data.filter((hotel) => {
               return hotel.title.rendered
                 .toLowerCase()
                 .startsWith(value.toLowerCase());

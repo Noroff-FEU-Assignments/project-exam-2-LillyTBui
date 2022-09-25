@@ -13,15 +13,23 @@
   --ff-sans-title: "Poppins", sans-serif;
 
   /* font-sizes */
-  --fs-800: 1.9rem;
+  --fs-800: 1.5rem;
   --fs-700: 1.375rem;
   --fs-600: 1.125rem;
   --fs-500: 1rem;
 
   /* line-height */
   --lh-normal: 28px;
-  --lh-medium: 33px;
-  --lh-big: 45px;
+}
+
+@media (min-width: 576px) {
+  /* font-sizes */
+  :root {
+    --fs-800: 1.7rem;
+    --fs-700: 1.5rem;
+    --fs-600: 1.375rem;
+    --fs-500: 1.125rem;
+  }
 }
 
 *,
@@ -97,23 +105,6 @@ select {
   }
 }
 
-/* Colors */
-.bg-gray {
-  background-color: var(--clr-gray);
-}
-
-.bg-dark {
-  background-color: var(--clr-secondary-dark);
-}
-
-.bg-blue {
-  background-color: var(--clr-primary-blue);
-}
-
-.bg-light-blue {
-  background-color: var(--clr-primary-light-blue);
-}
-
 /* headings */
 h1,
 h2,
@@ -144,46 +135,12 @@ h4 {
   font-family: var(--ff-sans-title);
 }
 
-.fw-bold {
-  font-weight: bold;
-}
-
-.letterspacing-1 {
-  letter-spacing: 1px;
-}
-
 .uppercase {
   text-transform: uppercase;
 }
 
 .bold {
   font-weight: bold;
-}
-
-.fs-800 {
-  font-size: var(--fs-800);
-}
-
-.fs-700 {
-  font-size: var(--fs-700);
-}
-
-.fs-600 {
-  font-size: var(--fs-600);
-}
-
-.fs-500 {
-  font-size: var(--fs-500);
-}
-
-.fs-800,
-.fs-700 {
-  line-height: var(--lh-big);
-}
-
-.fs-600,
-.fs-500 {
-  line-height: var(--lh-medium);
 }
 
 a {
