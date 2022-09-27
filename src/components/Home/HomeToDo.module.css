@@ -8,6 +8,12 @@
 
 .post_item {
   position: relative;
+  transition: all ease 0.4s;
+}
+
+.post_item:hover {
+  opacity: 0.85;
+  transform: scale(1.01);
 }
 
 .post_img {
