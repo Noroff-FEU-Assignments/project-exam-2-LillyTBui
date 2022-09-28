@@ -44,6 +44,8 @@ function Accommodation() {
           let filtered_data;
           if (select === null) {
             filtered_data = response.data;
+          } else if (select == "recommended") {
+            filtered_data = response.data;
           } else if (select === "ascending") {
             filtered_data = sortBy(response.data, ["acf.price"]);
           } else if (select === "descending") {
