@@ -11,7 +11,9 @@ import HotelDetail from "./components/Hotels/HotelDetail";
 import Dashboard from "./components/DashBoard/Dashboard";
 import EnquiryReceived from "./components/Enquiry/EnquiryReceived";
 import Accommodation from "./components/Accommodation/Accommodation";
+import messageToken from "./constants/messageToken";
 
+messageToken();
 function App() {
   const [user, setUser] = useLocalStorage("user", null);
 
