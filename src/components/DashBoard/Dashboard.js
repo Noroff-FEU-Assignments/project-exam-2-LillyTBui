@@ -30,7 +30,7 @@ function Dashboard({ user }) {
   ];
   let month = monthNames[date.getMonth()];
   const year = date.getFullYear();
-  console.log(day, month, year);
+
   return (
     <div className={style.dashboard}>
       <Container>

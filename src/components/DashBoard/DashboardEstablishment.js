@@ -21,9 +21,21 @@ const schema = yup.object().shape({
     .string()
     .required("Please write a short description")
     .min(10),
-  km: yup.number().required("Please enter km away from center"),
-  price: yup.number().required("Please enter a price").min(50),
-  rating: yup.number().required("Needs to be between 0 and 5").min(0.1).max(5),
+  km: yup
+    .number()
+    .typeError("Km must be a number")
+    .required("Please enter km away from center"),
+  price: yup
+    .number()
+    .typeError("Price must be a number")
+    .required("Please enter a price")
+    .min(50),
+  rating: yup
+    .number()
+    .typeError("Rating must be a number")
+    .required("Needs to be between 0 and 5")
+    .min(0.1)
+    .max(5),
   description: yup
     .string()
     .required("Please enter a short description")
@@ -111,7 +123,7 @@ function DashboardEstablishment() {
             <label htmlFor="name">Name</label>
             <input {...register("name")} id="name" />
             {errors.name && (
-              <span className={style.error}>{errors.name.message}</span>
+              <span className="form_error">{errors.name.message}</span>
             )}
 
             <label htmlFor="type">Type</label>
@@ -121,13 +133,13 @@ function DashboardEstablishment() {
               <option value="Guesthouse">Guesthouse</option>
             </select>
             {errors.type && (
-              <span className={style.error}>{errors.type.message}</span>
+              <span className="form_error">{errors.type.message}</span>
             )}
 
             <label htmlFor="address">Address</label>
             <input {...register("address", { required: true })} id="address" />
             {errors.address && (
-              <span className={style.error}>{errors.address.message}</span>
+              <span className="form_error">{errors.address.message}</span>
             )}
 
             <label htmlFor="address_description">Address description</label>
@@ -137,7 +149,7 @@ function DashboardEstablishment() {
               rows={5}
             />
             {errors.address_description && (
-              <span className={style.error}>
+              <span className="form_error">
                 {errors.address_description.message}
               </span>
             )}
@@ -145,7 +157,7 @@ function DashboardEstablishment() {
             <label htmlFor="km">Km away from city center</label>
             <input {...register("km", { required: true })} id="km" />
             {errors.km && (
-              <span className={style.error}>{errors.km.message}</span>
+              <span className="form_error">{errors.km.message}</span>
             )}
 
             <label htmlFor="price">Price</label>
@@ -155,7 +167,7 @@ function DashboardEstablishment() {
               id="price"
             />
             {errors.price && (
-              <span className={style.error}>{errors.price.message}</span>
+              <span className="form_error">{errors.price.message}</span>
             )}
 
             <label htmlFor="rating">Rating</label>
@@ -168,7 +180,7 @@ function DashboardEstablishment() {
               type="number"
             />
             {errors.rating && (
-              <span className={style.error}>{errors.rating.message}</span>
+              <span className="form_error">{errors.rating.message}</span>
             )}
 
             <label htmlFor="description">Description</label>
@@ -178,7 +190,7 @@ function DashboardEstablishment() {
               rows={5}
             />
             {errors.description && (
-              <span className={style.error}>{errors.description.message}</span>
+              <span className="form_error">{errors.description.message}</span>
             )}
           </div>
           <div className={`${style.form} ${style.facilities_div}`}>
@@ -199,7 +211,7 @@ function DashboardEstablishment() {
               <option value="Wi-fi">Wi-fi</option>
             </select>
             {errors.facilities && (
-              <span className={style.error}>{errors.facilities.message}</span>
+              <span className="form_error">{errors.facilities.message}</span>
             )}
           </div>
           <div className={`${style.form} ${style.resources_div}`}>
@@ -212,7 +224,7 @@ function DashboardEstablishment() {
               placeholder="Image url"
             />
             {errors.images && (
-              <span className={style.error}>{errors.images.message}</span>
+              <span className="form_error">{errors.images.message}</span>
             )}
           </div>
           <div className={style.form_button_div}>

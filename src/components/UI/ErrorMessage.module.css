@@ -1,7 +1,7 @@
 .error {
-  margin-bottom: 2rem;
+  margin-top: 1rem;
   background-color: rgb(247, 201, 201);
   border: 1px solid red;
   color: red;
-  padding: 1rem;
+  padding: 0.5rem 1rem;
 }

@@ -104,19 +104,19 @@ function Contact() {
         <label htmlFor="fullName">Full name</label>
         <input {...register("fullName")} id="fullName" />
         {errors.fullName && (
-          <span className={style.error}>{errors.fullName.message}</span>
+          <span className="form_error">{errors.fullName.message}</span>
         )}
 
         <label htmlFor="email">Email</label>
         <input {...register("email", { required: true })} id="email" />
         {errors.email && (
-          <span className={style.error}>{errors.email.message}</span>
+          <span className="form_error">{errors.email.message}</span>
         )}
 
         <label htmlFor="subject">Subject</label>
         <input {...register("subject", { required: true })} id="subject" />
         {errors.subject && (
-          <span className={style.error}>{errors.subject.message}</span>
+          <span className="form_error">{errors.subject.message}</span>
         )}
 
         <label htmlFor="message">Message</label>
@@ -126,7 +126,7 @@ function Contact() {
           rows="5"
         />
         {errors.message && (
-          <span className={style.error}>{errors.message.message}</span>
+          <span className="form_error">{errors.message.message}</span>
         )}
         <Button>Send</Button>
       </form>

@@ -24,7 +24,7 @@ const schema = yup.object().shape({
   firstName: yup.string().required("Please enter your first name").min(2),
   lastName: yup.string().required("Please enter your last name").min(2),
   email: yup.string().email().required("Please enter your email"),
-  number: yup.number().required("Please enter your phone number").min(8),
+  number: yup.string().required("Please enter your phone number").min(8),
 });
 
 /**
@@ -122,7 +122,7 @@ function ModalForm({ name, price }) {
             className={style.trip_form_inputs}
           />
           {dateError && (
-            <span className={style.error}>Please choose your trip date</span>
+            <span className="form_error">Please choose your trip date</span>
           )}
         </div>
         <div className={style.trip_form_input}>
@@ -137,7 +137,7 @@ function ModalForm({ name, price }) {
             className={style.trip_form_inputs}
           />
           {dateError && (
-            <span className={style.error}>Please choose your trip date</span>
+            <span className="form_error">Please choose your trip date</span>
           )}
         </div>
         <div className={style.trip_form_input}>
@@ -164,28 +164,28 @@ function ModalForm({ name, price }) {
           <label htmlFor="firstName">First name</label>
           <input {...register("firstName")} id="firstName" />
           {errors.firstName && (
-            <span className={style.error}>{errors.firstName.message}</span>
+            <span className="form_error">{errors.firstName.message}</span>
           )}
 
           <label htmlFor="lastName">Last name</label>
           <input {...register("lastName")} id="lastName" />
           {errors.lastName && (
-            <span className={style.error}>{errors.lastName.message}</span>
+            <span className="form_error">{errors.lastName.message}</span>
           )}
 
           <label htmlFor="email">Email</label>
           <input {...register("email", { required: true })} id="email" />
           {errors.email && (
-            <span className={style.error}>{errors.email.message}</span>
+            <span className="form_error">{errors.email.message}</span>
           )}
 
           <label htmlFor="number">Phone number</label>
           <input {...register("number", { required: true })} id="number" />
           {errors.number && (
-            <span className={style.error}>{errors.number.message}</span>
+            <span className="form_error">{errors.number.message}</span>
           )}
           {serverError && (
-            <span className={style.error}>
+            <span className="form_error">
               Something went wrong. Please try again.
             </span>
           )}

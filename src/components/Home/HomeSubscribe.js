@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import ErrorMessage from "../UI/ErrorMessage";
 
 const schema = yup.object().shape({
   email: yup.string().email().required("Please enter a valid email"),
@@ -49,7 +50,7 @@ function HomeSubscribe() {
           <button className={style.subscribe_btn}>Subscribe</button>
         </form>
       </div>
-      {errors.email && <span className="error">{errors.email.message}</span>}
+      {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
       {send && (
         <div className="success">
           <p>Thanks for subscribing!</p>
