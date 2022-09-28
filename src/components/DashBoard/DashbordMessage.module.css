@@ -15,6 +15,10 @@
   margin-top: 0.5rem;
 }
 
+.span_header {
+  margin-right: 0.5rem;
+}
+
 @media (min-width: 576px) {
   .accordion_header {
     flex-direction: row;

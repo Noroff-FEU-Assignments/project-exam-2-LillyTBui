@@ -3,7 +3,7 @@
   flex-direction: column;
 }
 
-span {
+.span_container {
   margin-right: 0.5rem;
 }
 

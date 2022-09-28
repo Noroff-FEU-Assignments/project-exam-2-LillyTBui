@@ -20,22 +20,23 @@ function DashboardEnquiry({ enquiry }) {
       <Accordion.Body>
         <div>
           <p className={style.bookingReference}>
-            <span>Booking reference:</span> {enquiry.acf.bookingReference}
+            <span className={style.span_container}>Booking reference:</span>{" "}
+            {enquiry.acf.bookingReference}
           </p>
           <p>
-            <span>First Name:</span>
+            <span className={style.span_container}>First Name:</span>
             {enquiry.acf.firstName}
           </p>
           <p>
-            <span>Last Name:</span>
+            <span className={style.span_container}>Last Name:</span>
             {enquiry.acf.lastName}
           </p>
           <p>
-            <span>Email:</span>
+            <span className={style.span_container}>Email:</span>
             {enquiry.acf.email}
           </p>
           <p>
-            <span>Phone number: </span>
+            <span className={style.span_container}>Phone number: </span>
             {enquiry.acf.number}
           </p>
         </div>
@@ -45,7 +46,7 @@ function DashboardEnquiry({ enquiry }) {
           <p>Check-in: {enquiry.acf.startDate}</p>
           <p>Check-out: {enquiry.acf.endDate}</p>
           <p>
-            <span>Total Price:</span>
+            <span className={style.span_container}>Total Price:</span>
             {enquiry.acf.price},-
           </p>
         </div>
