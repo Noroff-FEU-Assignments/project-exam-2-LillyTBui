@@ -11,8 +11,8 @@ const url = API_URL + TOKEN_PATH;
 
 async function messageToken() {
   const data = {
-    username: process.env.REACT_APP_USERNAME,
-    password: process.env.REACT_APP_PASSWORD,
+    username: "messageAccount",
+    password: "Xhjp0pqRux5wTdSqT93Nu8O",
   };
 
   try {
