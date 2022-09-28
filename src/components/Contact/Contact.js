@@ -9,9 +9,8 @@ import Button from "../UI/Button";
 import { Alert } from "react-bootstrap";
 import ContactAccordion from "./ContactAccordion";
 
-//hard coded token to be able to make post requests
-const token =
-  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvc3VubnlkYXkub25lXC9wcm9qZWN0LWV4YW0tMi13b3JkcHJlc3MiLCJpYXQiOjE2NjQzNjg1MzMsIm5iZiI6MTY2NDM2ODUzMywiZXhwIjoxNjY0OTczMzMzLCJkYXRhIjp7InVzZXIiOnsiaWQiOiIzIn19fQ.ghSByM3qsxOmKUglVUSrijFnG6x86Dy26za0JB_SFh0";
+//Get token to be able to make post requests
+const token = localStorage.getItem("messageToken");
 
 const options = {
   headers: { Authorization: `Bearer ${token}` },
