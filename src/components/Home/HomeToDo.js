@@ -33,15 +33,18 @@ function HomeToDo() {
 
   if (loading) {
     return (
-      <Spinner animation="border" role="status" className="spinner">
-        <span className="visually-hidden">Loading...</span>
-      </Spinner>
+      <div className="spinner_div">
+        <Spinner animation="border" role="status" className="spinner">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+      </div>
     );
   }
 
   if (error) {
     return <ErrorMessage>An error occurred: {error}</ErrorMessage>;
   }
+
   return (
     <div>
       <h2>Things to do in Bergen</h2>

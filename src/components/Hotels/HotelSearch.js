@@ -36,9 +36,11 @@ function HotelSearch({ input }) {
 
   if (loading) {
     return (
-      <Spinner animation="border" role="status" className="spinner">
-        <span className="visually-hidden">Loading...</span>
-      </Spinner>
+      <div className="spinner_div">
+        <Spinner animation="border" role="status" className="spinner">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+      </div>
     );
   }
 

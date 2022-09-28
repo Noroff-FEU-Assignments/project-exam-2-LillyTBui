@@ -168,3 +168,12 @@ a {
 .mt-2 {
   margin-top: 2rem;
 }
+
+.spinner_div {
+  text-align: center;
+  margin: 2rem;
+}
+
+.spinner {
+  color: var(--clr-primary-blue);
+}

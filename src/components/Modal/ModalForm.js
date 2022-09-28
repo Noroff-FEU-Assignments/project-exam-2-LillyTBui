@@ -76,32 +76,36 @@ function ModalForm({ name, price }) {
     if (dateStart === "" || dateEnd === "") {
       setDateError(true);
     } else {
-      setDateError(false);
-      const referenceNumber = EnquiryReferenceNumber();
-      const telephoneNumber = parseInt(data.number);
-      const formatted_data = {
-        status: "publish",
-        title: name,
-        acf: {
-          firstName: data.firstName,
-          lastName: data.lastName,
-          email: data.email,
-          number: telephoneNumber,
-          startDate: dateStart,
-          endDate: dateEnd,
-          travelers: data.travelers,
-          price: totalPrice,
-          bookingReference: referenceNumber,
-        },
-      };
+      if (totalPrice >= 0) {
+        setDateError(true);
+      } else {
+        setDateError(false);
+        const referenceNumber = EnquiryReferenceNumber();
+        const telephoneNumber = parseInt(data.number);
+        const formatted_data = {
+          status: "publish",
+          title: name,
+          acf: {
+            firstName: data.firstName,
+            lastName: data.lastName,
+            email: data.email,
+            number: telephoneNumber,
+            startDate: dateStart,
+            endDate: dateEnd,
+            travelers: data.travelers,
+            price: totalPrice,
+            bookingReference: referenceNumber,
+          },
+        };
 
-      try {
-        const response = await axios.post(url, formatted_data, options);
-        console.log("response", response.data);
-        navigate("/received", { state: { enquiry: response.data } });
-      } catch (error) {
-        console.log("error", error.message);
-        setServerError(error.toString());
+        try {
+          const response = await axios.post(url, formatted_data, options);
+          console.log("response", response.data);
+          navigate("/received", { state: { enquiry: response.data } });
+        } catch (error) {
+          console.log("error", error.message);
+          setServerError(error.toString());
+        }
       }
     }
   }
