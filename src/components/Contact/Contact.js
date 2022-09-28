@@ -11,7 +11,7 @@ import ContactAccordion from "./ContactAccordion";
 
 //Get token to be able to make post requests
 const token = localStorage.getItem("messageToken");
-
+console.log(token);
 const options = {
   headers: { Authorization: `Bearer ${token}` },
 };
