@@ -6,7 +6,7 @@ import { options } from "../../constants/accommodationsOptions";
 import ErrorMessage from "../UI/ErrorMessage";
 import Spinner from "react-bootstrap/Spinner";
 import Container from "react-bootstrap/Container";
-import HotelItem from "../Hotels/HotelItem";
+import AccommodationItem from "./AccommodationItem";
 import Select from "react-select";
 import style from "./Accommodation.module.css";
 
@@ -115,7 +115,7 @@ function Accommodation() {
           <div className={style.accommodation_list}>
             {hotels.length === 0 && <p>No hotels found</p>}
             {hotels.map((hotel) => {
-              return <HotelItem key={hotel.id} hotel={hotel} />;
+              return <AccommodationItem key={hotel.id} hotel={hotel} />;
             })}
           </div>
         </div>

@@ -2,16 +2,16 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
-import style from "./HotelItem.module.css";
+import style from "./AccommodationItem.module.css";
 import Card from "react-bootstrap/Card";
 
 /**
- * Generates a hotel item
+ * Generates an accommodation item
  * @param {object} hotel
- * @returns a card of the given hotel item with information
+ * @returns a card of the given accommodation item with information
  */
 
-function HotelItem({ hotel }) {
+function AccommodationItem({ hotel }) {
   return (
     <Link to={`detail/${hotel.id}`} key={hotel.id}>
       <Card className={style.card}>
@@ -19,7 +19,7 @@ function HotelItem({ hotel }) {
           variant="top"
           src={hotel.acf.image_url}
           alt={hotel.title.rendered}
-          className={style.card_img}
+          className={style.img}
         />
         <Card.Body className={style.card_body}>
           <div>
@@ -30,7 +30,7 @@ function HotelItem({ hotel }) {
             </Card.Title>
             <Card.Text>{hotel.acf.km}km away from city center</Card.Text>
           </div>
-          <Card.Text className={style.hotel_price}>
+          <Card.Text className={style.card_price}>
             {hotel.acf.price} NOK per night
           </Card.Text>
         </Card.Body>
@@ -39,8 +39,8 @@ function HotelItem({ hotel }) {
   );
 }
 
-HotelItem.propTypes = {
+AccommodationItem.propTypes = {
   hotel: PropTypes.object.isRequired,
 };
 
-export default HotelItem;
+export default AccommodationItem;
