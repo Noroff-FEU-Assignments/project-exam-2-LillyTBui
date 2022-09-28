@@ -76,7 +76,7 @@ function ModalForm({ name, price }) {
     if (dateStart === "" || dateEnd === "") {
       setDateError(true);
     } else {
-      if (totalPrice >= 0) {
+      if (totalPrice <= 0) {
         setDateError(true);
       } else {
         setDateError(false);
