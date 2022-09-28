@@ -10,6 +10,7 @@ import ModalPrice from "./ModalPrice";
 import { useNavigate } from "react-router-dom";
 import EnquiryReferenceNumber from "../Enquiry/EnquiryReferenceNumber";
 import ErrorMessage from "../UI/ErrorMessage";
+import ModalDate from "./ModalDate";
 
 //Get token to be able to make post requests
 const token = localStorage.getItem("messageToken");
@@ -45,6 +46,8 @@ function ModalForm({ name, price }) {
   const [dateStart, setDateStart] = useState("");
   const [dateEnd, setDateEnd] = useState("");
   const [dateError, setDateError] = useState(false);
+  const [minDateEnd, setMinDateEnd] = useState("");
+  const [disabled, setDisabled] = useState(true);
 
   let navigate = useNavigate();
 
@@ -58,6 +61,11 @@ function ModalForm({ name, price }) {
 
   const changeDateStart = (event) => {
     setDateStart(event.target.value);
+    setDisabled(false);
+    let chosenDay = new Date(event.target.value);
+    let nextDay = new Date(event.target.value);
+    nextDay.setDate(chosenDay.getDate() + 1);
+    setMinDateEnd(ModalDate(nextDay));
   };
 
   const changeDateEnd = (event) => {
@@ -68,49 +76,43 @@ function ModalForm({ name, price }) {
     if (dateStart === "" || dateEnd === "") {
       setDateError(true);
     } else {
-      setDateError(false);
+      if (totalPrice <= 0) {
+        setDateError(true);
+      } else {
+        setDateError(false);
+        const referenceNumber = EnquiryReferenceNumber();
+        const telephoneNumber = parseInt(data.number);
+        const formatted_data = {
+          status: "publish",
+          title: name,
+          acf: {
+            firstName: data.firstName,
+            lastName: data.lastName,
+            email: data.email,
+            number: telephoneNumber,
+            startDate: dateStart,
+            endDate: dateEnd,
+            travelers: data.travelers,
+            price: totalPrice,
+            bookingReference: referenceNumber,
+          },
+        };
 
-      const referenceNumber = EnquiryReferenceNumber();
-      const telephoneNumber = parseInt(data.number);
-      const formatted_data = {
-        status: "publish",
-        title: name,
-        acf: {
-          firstName: data.firstName,
-          lastName: data.lastName,
-          email: data.email,
-          number: telephoneNumber,
-          startDate: dateStart,
-          endDate: dateEnd,
-          travelers: data.travelers,
-          price: totalPrice,
-          bookingReference: referenceNumber,
-        },
-      };
-
-      try {
-        const response = await axios.post(url, formatted_data, options);
-        console.log("response", response.data);
-        navigate("/received", { state: { enquiry: response.data } });
-      } catch (error) {
-        console.log("error", error.message);
-        setServerError(error.toString());
+        try {
+          const response = await axios.post(url, formatted_data, options);
+          console.log("response", response.data);
+          navigate("/received", { state: { enquiry: response.data } });
+        } catch (error) {
+          console.log("error", error.message);
+          setServerError(error.toString());
+        }
       }
     }
   }
 
   //get current date in correct format so that the user can't pick a date in the past
   const date = new Date();
-  let day = date.getDate();
-  if (day < 10) {
-    day = "0" + day;
-  }
-  let month = date.getMonth() + 1;
-  if (month < 10) {
-    month = "0" + month;
-  }
-  const year = date.getFullYear();
-  const minDate = `${year}-${month}-${day}`;
+  const minDate = ModalDate(date);
 
   if (serverError) {
     return (
@@ -131,7 +133,7 @@ function ModalForm({ name, price }) {
             id="startDate"
             name="trip-start"
             min={minDate}
-            max={dateEnd}
+            max="2023-12-30"
             onChange={changeDateStart}
             className={style.trip_form_inputs}
           />
@@ -145,8 +147,9 @@ function ModalForm({ name, price }) {
             type="date"
             id="endDate"
             name="trip-start"
-            min={dateStart}
+            min={minDateEnd}
             max="2023-12-31"
+            disabled={disabled}
             onChange={changeDateEnd}
             className={style.trip_form_inputs}
           />
