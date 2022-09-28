@@ -11,10 +11,33 @@ import style from "./Dashboard.module.css";
  */
 
 function Dashboard({ user }) {
+  //Show today's date
+  const date = new Date();
+  let day = date.getDate();
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  let month = monthNames[date.getMonth()];
+  const year = date.getFullYear();
+  console.log(day, month, year);
   return (
     <div className={style.dashboard}>
       <Container>
-        <h1 className={style.welcome}>Welcome back, {user}!</h1>
+        <p className={style.date}>
+          {day}.{month}, {year}
+        </p>
+        <h1>Welcome back, {user}!</h1>
         <DashboardMessages />
         <DashboardEnquiries />
       </Container>
