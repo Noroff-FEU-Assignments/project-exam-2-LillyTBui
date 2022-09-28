@@ -145,7 +145,7 @@ a {
 }
 
 .error {
-  margin-top: 1rem;
+  margin: 1rem 0;
   background-color: rgb(247, 201, 201);
   border: 1px solid red;
   color: red;
@@ -158,7 +158,7 @@ a {
 }
 
 .success {
-  margin-top: 1rem;
+  margin: 1rem 0;
   background-color: rgb(201, 247, 206);
   border: 1px solid green;
   color: green;
