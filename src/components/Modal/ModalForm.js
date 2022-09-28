@@ -76,36 +76,32 @@ function ModalForm({ name, price }) {
     if (dateStart === "" || dateEnd === "") {
       setDateError(true);
     } else {
-      if (totalPrice <= 0) {
-        setDateError(true);
-      } else {
-        setDateError(false);
-        const referenceNumber = EnquiryReferenceNumber();
-        const telephoneNumber = parseInt(data.number);
-        const formatted_data = {
-          status: "publish",
-          title: name,
-          acf: {
-            firstName: data.firstName,
-            lastName: data.lastName,
-            email: data.email,
-            number: telephoneNumber,
-            startDate: dateStart,
-            endDate: dateEnd,
-            travelers: data.travelers,
-            price: totalPrice,
-            bookingReference: referenceNumber,
-          },
-        };
+      setDateError(false);
+      const referenceNumber = EnquiryReferenceNumber();
+      const telephoneNumber = parseInt(data.number);
+      const formatted_data = {
+        status: "publish",
+        title: name,
+        acf: {
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+          number: telephoneNumber,
+          startDate: dateStart,
+          endDate: dateEnd,
+          travelers: data.travelers,
+          price: totalPrice,
+          bookingReference: referenceNumber,
+        },
+      };
 
-        try {
-          const response = await axios.post(url, formatted_data, options);
-          console.log("response", response.data);
-          navigate("/received", { state: { enquiry: response.data } });
-        } catch (error) {
-          console.log("error", error.message);
-          setServerError(error.toString());
-        }
+      try {
+        const response = await axios.post(url, formatted_data, options);
+        console.log("response", response.data);
+        navigate("/received", { state: { enquiry: response.data } });
+      } catch (error) {
+        console.log("error", error.message);
+        setServerError(error.toString());
       }
     }
   }
@@ -138,7 +134,7 @@ function ModalForm({ name, price }) {
             className={style.trip_form_inputs}
           />
           {dateError && (
-            <span className="form_error">Please choose your trip date</span>
+            <span className="form_error">Please choose a valid trip date</span>
           )}
         </div>
         <div className={style.trip_form_input}>
@@ -154,7 +150,7 @@ function ModalForm({ name, price }) {
             className={style.trip_form_inputs}
           />
           {dateError && (
-            <span className="form_error">Please choose your trip date</span>
+            <span className="form_error">Please choose a valid trip date</span>
           )}
         </div>
         <div className={style.trip_form_input}>
