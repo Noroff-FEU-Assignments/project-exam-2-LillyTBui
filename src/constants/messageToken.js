@@ -11,9 +11,10 @@ const url = API_URL + TOKEN_PATH;
 
 async function messageToken() {
   const data = {
-    username: "messageAccount",
-    password: "Xhjp0pq$Rux5wTdSqT93Nu8O",
+    username: process.env.REACT_APP_USERNAME,
+    password: process.env.REACT_APP_PASSWORD,
   };
+
   try {
     const response = await axios.post(url, data);
     localStorage.setItem("messageToken", response.data.token);
