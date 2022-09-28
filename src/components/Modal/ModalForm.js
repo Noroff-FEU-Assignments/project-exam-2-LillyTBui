@@ -9,10 +9,11 @@ import style from "./ModalForm.module.css";
 import ModalPrice from "./ModalPrice";
 import { useNavigate } from "react-router-dom";
 import EnquiryReferenceNumber from "../Enquiry/EnquiryReferenceNumber";
+import ErrorMessage from "../UI/ErrorMessage";
 
 //hard coded token to be able to make post requests
 const token =
-  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvc3VubnlkYXkub25lXC9wcm9qZWN0LWV4YW0tMi13b3JkcHJlc3MiLCJpYXQiOjE2NjM2NzQwNTMsIm5iZiI6MTY2MzY3NDA1MywiZXhwIjoxNjY0Mjc4ODUzLCJkYXRhIjp7InVzZXIiOnsiaWQiOiIzIn19fQ.YiG5uQQCNtJ4NcHRKVWRFQVyerykw_PdMqbqKIykvwg";
+  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvc3VubnlkYXkub25lXC9wcm9qZWN0LWV4YW0tMi13b3JkcHJlc3MiLCJpYXQiOjE2NjQzNjg1MzMsIm5iZiI6MTY2NDM2ODUzMywiZXhwIjoxNjY0OTczMzMzLCJkYXRhIjp7InVzZXIiOnsiaWQiOiIzIn19fQ.ghSByM3qsxOmKUglVUSrijFnG6x86Dy26za0JB_SFh0";
 
 const options = {
   headers: { Authorization: `Bearer ${token}` },
@@ -24,7 +25,12 @@ const schema = yup.object().shape({
   firstName: yup.string().required("Please enter your first name").min(2),
   lastName: yup.string().required("Please enter your last name").min(2),
   email: yup.string().email().required("Please enter your email"),
-  number: yup.string().required("Please enter your phone number").min(8),
+  number: yup
+    .string()
+    .matches(/^[0-9]+$/, "Must be only digits")
+    .required("Please enter your phone number")
+    .min(8)
+    .max(8),
 });
 
 /**
@@ -66,6 +72,7 @@ function ModalForm({ name, price }) {
       setDateError(false);
 
       const referenceNumber = EnquiryReferenceNumber();
+      const telephoneNumber = parseInt(data.number);
       const formatted_data = {
         status: "publish",
         title: name,
@@ -73,7 +80,7 @@ function ModalForm({ name, price }) {
           firstName: data.firstName,
           lastName: data.lastName,
           email: data.email,
-          number: data.number,
+          number: telephoneNumber,
           startDate: dateStart,
           endDate: dateEnd,
           travelers: data.travelers,
@@ -105,6 +112,14 @@ function ModalForm({ name, price }) {
   }
   const year = date.getFullYear();
   const minDate = `${year}-${month}-${day}`;
+
+  if (serverError) {
+    return (
+      <ErrorMessage>
+        An error occurred: {serverError}. Please try again
+      </ErrorMessage>
+    );
+  }
 
   return (
     <>

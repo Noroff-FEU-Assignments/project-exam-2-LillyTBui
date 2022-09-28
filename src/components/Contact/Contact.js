@@ -11,7 +11,7 @@ import ContactAccordion from "./ContactAccordion";
 
 //hard coded token to be able to make post requests
 const token =
-  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvc3VubnlkYXkub25lXC9wcm9qZWN0LWV4YW0tMi13b3JkcHJlc3MiLCJpYXQiOjE2NjM2NzQwNTMsIm5iZiI6MTY2MzY3NDA1MywiZXhwIjoxNjY0Mjc4ODUzLCJkYXRhIjp7InVzZXIiOnsiaWQiOiIzIn19fQ.YiG5uQQCNtJ4NcHRKVWRFQVyerykw_PdMqbqKIykvwg";
+  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvc3VubnlkYXkub25lXC9wcm9qZWN0LWV4YW0tMi13b3JkcHJlc3MiLCJpYXQiOjE2NjQzNjg1MzMsIm5iZiI6MTY2NDM2ODUzMywiZXhwIjoxNjY0OTczMzMzLCJkYXRhIjp7InVzZXIiOnsiaWQiOiIzIn19fQ.ghSByM3qsxOmKUglVUSrijFnG6x86Dy26za0JB_SFh0";
 
 const options = {
   headers: { Authorization: `Bearer ${token}` },
