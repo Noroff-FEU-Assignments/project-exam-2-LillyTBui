@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { API_URL } from "../../constants/api";
 import axios from "axios";
-import style from "./DashboardEnquiries.module.css";
+import style from "./DashboardMessages.module.css";
 import Accordion from "react-bootstrap/Accordion";
 import Spinner from "react-bootstrap/Spinner";
 import ErrorMessage from "../UI/ErrorMessage";
@@ -68,7 +68,7 @@ function DashboardEnquiries() {
   }
 
   return (
-    <div className={style.dashboardEnquiries_div}>
+    <div className={style.dashboard_div}>
       <div className={style.header}>
         <h3>Enquiries</h3>
         <Select

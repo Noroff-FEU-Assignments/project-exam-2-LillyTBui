@@ -69,7 +69,7 @@ function DashboardMessages() {
   }
 
   return (
-    <div className={style.dashboardMessages_div}>
+    <div className={style.dashboard_div}>
       <div className={style.header}>
         <h3>Messages</h3>
         <Select
