@@ -1,7 +1,7 @@
 .card {
   max-height: 350px;
   border: none;
-  margin-bottom: 2rem;
+  margin: 0rem 1rem 2rem 1rem;
   transition: all 0.3s ease-in-out;
 }
 
