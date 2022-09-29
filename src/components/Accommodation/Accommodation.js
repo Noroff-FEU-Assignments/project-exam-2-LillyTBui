@@ -14,7 +14,11 @@ import { useAccordionButton } from "react-bootstrap/AccordionButton";
 import Card from "react-bootstrap/Card";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAngleDown,
+  faAngleUp,
+  faFilter,
+} from "@fortawesome/free-solid-svg-icons";
 
 const API = API_URL + "wp/v2/hotels?per_page=90";
 
@@ -73,6 +77,11 @@ function Accommodation() {
 
   const onChange = (event) => {
     setValue(event.target.value);
+  };
+
+  const showFilter = () => {
+    const filterDiv = document.querySelector("#filter_div");
+    filterDiv.classList.toggle("show_filter");
   };
 
   //Toggle chosen values in categories
@@ -193,8 +202,6 @@ function Accommodation() {
               return containsFacilities(hotel, facilities);
             });
           }
-
-          console.log(filtered_data);
           setHotels(filtered_data);
           setResults(filtered_data.length);
         } catch (error) {
@@ -238,7 +245,12 @@ function Accommodation() {
             />
           </div>
         </div>
-        <div className={style.accommodation_filter_div}>
+        <div className={style.filter_mobile}>
+          {results === 1 && <p>{results} accommodation</p>}
+          {results !== 1 && <p>{results} accommodations</p>}
+          <FontAwesomeIcon icon={faFilter} onClick={showFilter} />
+        </div>
+        <div className={style.accommodation_filter_div} id="filter_div">
           <div>
             <p className={style.search_title}>Hotel Search</p>
             <input
