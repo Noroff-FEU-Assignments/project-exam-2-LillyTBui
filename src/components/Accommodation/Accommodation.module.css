@@ -5,16 +5,17 @@
   grid-template-rows: 55px calc(100vh - 55px);
   grid-template-columns: 220px auto;
   grid-template-areas:
-    ". header"
-    "filter hotels";
+    "filter filter"
+    "header header"
+    "hotels hotels";
 }
 
 .header {
   grid-area: header;
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
-  margin: 0rem 1rem;
+  align-items: flex-end;
+  margin: 2rem 0;
 }
 
 .accommodation_filter_div {
@@ -27,7 +28,7 @@
 }
 
 .sort_by {
-  margin: 1rem 0;
+  margin-right: 1rem;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -101,6 +102,47 @@
   padding: 2px 8px;
 }
 
+@media (min-width: 960px) {
+  .accommodation_container {
+    margin: 2rem 0 4rem 0;
+    display: grid;
+    grid-gap: 0.5rem 2rem;
+    grid-template-rows: 55px calc(100vh - 55px);
+    grid-template-columns: 220px auto;
+    grid-template-areas:
+      "header header"
+      "filter hotels";
+  }
+}
+
+@media (min-width: 1140px) {
+  .accommodation_container {
+    display: grid;
+    grid-gap: 0.5rem 2rem;
+    grid-template-rows: 55px calc(100vh - 55px);
+    grid-template-columns: 220px auto;
+    grid-template-areas:
+      ". header"
+      "filter hotels";
+  }
+
+  .header {
+    grid-area: header;
+    /* display: flex;
+    justify-content: space-between;
+    align-items: baseline; */
+    margin: 0rem 1rem;
+  }
+
+  .accommodation_filter_div,
+  .accommodation_list_div {
+    margin-top: 1rem;
+  }
+
+  .sort_by {
+    margin-right: 0;
+  }
+}
 /* @media (min-width: 765px) {
   .sort_by {
     display: flex;
