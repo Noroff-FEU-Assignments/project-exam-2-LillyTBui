@@ -1,15 +1,36 @@
-.accommodation_list_div {
-  margin-bottom: 3rem;
-  display: flex;
-  flex-direction: column;
+.accommodation_container {
+  margin-bottom: 2rem;
+  display: grid;
+  grid-gap: 0.5rem 2rem;
+  grid-template-rows: 55px calc(100vh - 55px);
+  grid-template-columns: 220px auto;
+  grid-template-areas:
+    ". header"
+    "filter hotels";
 }
 
-.accommodation_list {
-  width: 100%;
+.header {
+  grid-area: header;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 0rem 1rem;
+}
+
+.accommodation_filter_div {
+  grid-area: filter;
+}
+
+.accommodation_list_div {
+  grid-area: hotels;
+  overflow: auto;
 }
 
 .sort_by {
   margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .sort_by p {
@@ -21,7 +42,7 @@
   font-size: 0.9rem;
 }
 
-.categories_div {
+.categories {
   margin-top: 1rem;
 }
 
@@ -34,12 +55,17 @@
   background-color: white;
   padding: 0.5rem 0;
   border-top: 1px solid rgba(0, 0, 0, 0.175);
+  border-bottom: none;
   border-radius: 0 !important;
+}
+
+.categories_facilities {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.175);
 }
 
 .categories_title {
   margin: 0;
-  padding: 0;
+  padding: 0.1rem 0;
   border: none;
   background-color: white;
   width: 100%;
@@ -49,7 +75,7 @@
 }
 
 .categories_card_body {
-  padding: 0.5rem 0;
+  padding: 0rem 0 1rem 0;
 }
 
 .categories_ul {
@@ -73,10 +99,9 @@
   border-radius: 4px;
   border-style: solid;
   padding: 2px 8px;
-  margin-bottom: 1rem;
 }
 
-@media (min-width: 765px) {
+/* @media (min-width: 765px) {
   .sort_by {
     display: flex;
     align-items: center;
@@ -95,4 +120,4 @@
   .search {
     margin-bottom: 0;
   }
-}
+} */

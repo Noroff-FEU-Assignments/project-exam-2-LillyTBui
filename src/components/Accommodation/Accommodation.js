@@ -224,147 +224,152 @@ function Accommodation() {
 
   return (
     <Container>
-      <div>
-        {results === 1 && <p>{results} accommodation</p>}
-        {results !== 1 && <p>{results} accommodations</p>}
-        <div className={style.sort_by}>
-          <p>Sort by</p>
-          <Select
-            options={options}
-            isClearable={true}
-            className={style.sort_by_select}
-            onChange={handleChange}
-          />
+      <div className={style.accommodation_container}>
+        <div className={style.header}>
+          {results === 1 && <p>{results} accommodation</p>}
+          {results !== 1 && <p>{results} accommodations</p>}
+          <div className={style.sort_by}>
+            <p>Sort by</p>
+            <Select
+              options={options}
+              isClearable={true}
+              className={style.sort_by_select}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+        <div className={style.accommodation_filter_div}>
+          <div>
+            <p className={style.search_title}>Hotel Search</p>
+            <input
+              id="search"
+              type="text"
+              className={style.search}
+              placeholder="Search"
+              onChange={onChange}
+              value={value}
+            />
+          </div>
+          <Accordion
+            defaultActiveKey="0"
+            className={`${style.categories_div} ${style.categories}`}
+          >
+            <Card className={style.categories_card}>
+              <Card.Header className={style.categories_title_div}>
+                <CustomToggle eventKey="0">
+                  <p className={style.categories_title}>Categories</p>
+                  <FontAwesomeIcon icon={toggleIconCategories} />
+                </CustomToggle>
+              </Card.Header>
+              <Accordion.Collapse eventKey="0">
+                <Card.Body className={style.categories_card_body}>
+                  <ul className={style.categories_ul}>
+                    <li>
+                      <input
+                        type="checkbox"
+                        id="Hotel"
+                        onChange={handleCategories}
+                      />
+                      <label htmlFor="Hotel">Hotels</label>
+                    </li>
+                    <li>
+                      <input
+                        type="checkbox"
+                        id="Bed and breakfast"
+                        onChange={handleCategories}
+                      />
+                      <label htmlFor="Bed and breakfast">Bed & Breakfast</label>
+                    </li>
+                    <li>
+                      <input
+                        type="checkbox"
+                        id="Guesthouse"
+                        onChange={handleCategories}
+                      />
+                      <label htmlFor="Guesthouse">Guesthouse</label>
+                    </li>
+                  </ul>
+                </Card.Body>
+              </Accordion.Collapse>
+            </Card>
+          </Accordion>
+          <Accordion
+            defaultActiveKey="1"
+            className={`${style.categories_div} ${style.categories_facilities}`}
+          >
+            <Card className={style.categories_card}>
+              <Card.Header className={style.categories_title_div}>
+                <CustomToggle eventKey="1">
+                  <p className={style.categories_title}>Facilities</p>
+                  <FontAwesomeIcon icon={toggleIconFacilities} />
+                </CustomToggle>
+              </Card.Header>
+              <Accordion.Collapse eventKey="1">
+                <Card.Body className={style.categories_card_body}>
+                  <ul className={style.categories_ul}>
+                    <li>
+                      <input
+                        type="checkbox"
+                        id="Air condition"
+                        onChange={handleFacilities}
+                      />
+                      <label htmlFor="Air condition">Air condition</label>
+                    </li>
+                    <li>
+                      <input
+                        type="checkbox"
+                        id="Breakfast"
+                        onChange={handleFacilities}
+                      />
+                      <label htmlFor="Breakfast">Breakfast</label>
+                    </li>
+                    <li>
+                      <input
+                        type="checkbox"
+                        id="No smoking"
+                        onChange={handleFacilities}
+                      />
+                      <label htmlFor="No smoking">No smoking</label>
+                    </li>
+                    <li>
+                      <input
+                        type="checkbox"
+                        id="Parking"
+                        onChange={handleFacilities}
+                      />
+                      <label htmlFor="Parking">Parking</label>
+                    </li>
+                    <li>
+                      <input
+                        type="checkbox"
+                        id="Pets allowed"
+                        onChange={handleFacilities}
+                      />
+                      <label htmlFor="Pets allowed">Pets allowed</label>
+                    </li>
+                    <li>
+                      <input
+                        type="checkbox"
+                        id="Restaurant"
+                        onChange={handleFacilities}
+                      />
+                      <label htmlFor="Restaurant">Restaurant</label>
+                    </li>
+                    <li>
+                      <input
+                        type="checkbox"
+                        id="Wi-fi"
+                        onChange={handleFacilities}
+                      />
+                      <label htmlFor="Wi-fi">Wi-fi</label>
+                    </li>
+                  </ul>
+                </Card.Body>
+              </Accordion.Collapse>
+            </Card>
+          </Accordion>
         </div>
         <div className={style.accommodation_list_div}>
-          <div>
-            <div>
-              <p className={style.search_title}>Hotel Search</p>
-              <input
-                id="search"
-                type="text"
-                className={style.search}
-                placeholder="Search"
-                onChange={onChange}
-                value={value}
-              />
-            </div>
-            <Accordion defaultActiveKey="0" className={style.categories_div}>
-              <Card className={style.categories_card}>
-                <Card.Header className={style.categories_title_div}>
-                  <CustomToggle eventKey="0">
-                    <p className={style.categories_title}>Categories</p>
-                    <FontAwesomeIcon icon={toggleIconCategories} />
-                  </CustomToggle>
-                </Card.Header>
-                <Accordion.Collapse eventKey="0">
-                  <Card.Body className={style.categories_card_body}>
-                    <ul className={style.categories_ul}>
-                      <li>
-                        <input
-                          type="checkbox"
-                          id="Hotel"
-                          onChange={handleCategories}
-                        />
-                        <label htmlFor="Hotel">Hotels</label>
-                      </li>
-                      <li>
-                        <input
-                          type="checkbox"
-                          id="Bed and breakfast"
-                          onChange={handleCategories}
-                        />
-                        <label htmlFor="Bed and breakfast">
-                          Bed & Breakfast
-                        </label>
-                      </li>
-                      <li>
-                        <input
-                          type="checkbox"
-                          id="Guesthouse"
-                          onChange={handleCategories}
-                        />
-                        <label htmlFor="Guesthouse">Guesthouse</label>
-                      </li>
-                    </ul>
-                  </Card.Body>
-                </Accordion.Collapse>
-              </Card>
-            </Accordion>
-            <Accordion defaultActiveKey="1" className={style.categories_div}>
-              <Card className={style.categories_card}>
-                <Card.Header className={style.categories_title_div}>
-                  <CustomToggle eventKey="1">
-                    <p className={style.categories_title}>Facilities</p>
-                    <FontAwesomeIcon icon={toggleIconFacilities} />
-                  </CustomToggle>
-                </Card.Header>
-                <Accordion.Collapse eventKey="1">
-                  <Card.Body className={style.categories_card_body}>
-                    <ul className={style.categories_ul}>
-                      <li>
-                        <input
-                          type="checkbox"
-                          id="Air condition"
-                          onChange={handleFacilities}
-                        />
-                        <label htmlFor="Air condition">Air condition</label>
-                      </li>
-                      <li>
-                        <input
-                          type="checkbox"
-                          id="Breakfast"
-                          onChange={handleFacilities}
-                        />
-                        <label htmlFor="Breakfast">Breakfast</label>
-                      </li>
-                      <li>
-                        <input
-                          type="checkbox"
-                          id="No smoking"
-                          onChange={handleFacilities}
-                        />
-                        <label htmlFor="No smoking">No smoking</label>
-                      </li>
-                      <li>
-                        <input
-                          type="checkbox"
-                          id="Parking"
-                          onChange={handleFacilities}
-                        />
-                        <label htmlFor="Parking">Parking</label>
-                      </li>
-                      <li>
-                        <input
-                          type="checkbox"
-                          id="Pets allowed"
-                          onChange={handleFacilities}
-                        />
-                        <label htmlFor="Pets allowed">Pets allowed</label>
-                      </li>
-                      <li>
-                        <input
-                          type="checkbox"
-                          id="Restaurant"
-                          onChange={handleFacilities}
-                        />
-                        <label htmlFor="Restaurant">Restaurant</label>
-                      </li>
-                      <li>
-                        <input
-                          type="checkbox"
-                          id="Wi-fi"
-                          onChange={handleFacilities}
-                        />
-                        <label htmlFor="Wi-fi">Wi-fi</label>
-                      </li>
-                    </ul>
-                  </Card.Body>
-                </Accordion.Collapse>
-              </Card>
-            </Accordion>
-          </div>
-
           <div className={style.accommodation_list}>
             {hotels.length === 0 && <p>No hotels found</p>}
             {hotels.map((hotel) => {
